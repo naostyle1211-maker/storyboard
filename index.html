@@ -3,13 +3,14 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Life Rebuilding OS — Storyboard</title>
+<title>ANDBODY OS — Storyboard Protocol</title>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=IBM+Plex+Mono:wght@300;400;500;700&family=Noto+Sans+JP:wght@300;400;700&display=swap" rel="stylesheet">
 <style>
 :root{
-  --bg:#080808;--surface:#0f0f0f;--surface2:#161616;--surface3:#1a1a1a;
+  --bg:#080808;--surface:#0f0f0f;--surface2:#131313;--surface3:#181818;
   --border:#1e1e1e;--border2:#2a2a2a;
   --teal:#00c2c7;--orange:#e85d00;--amber:#f5a623;--red:#c0392b;
+  --purple:#8b5cf6;--green:#27ae60;--blue:#5b9bd5;
   --text:#d0d0d0;--muted:#555;--white:#f0f0f0;
 }
 *{margin:0;padding:0;box-sizing:border-box;}
@@ -19,301 +20,344 @@ body{background:var(--bg);color:var(--text);font-family:'IBM Plex Mono',monospac
 .view{display:none;padding:40px 32px;}
 .view.active{display:block;}
 
-/* ── SETUP VIEW ── */
-#setupView{max-width:560px;margin:0 auto;padding-top:80px;}
-.setup-logo{font-family:'Bebas Neue',sans-serif;font-size:42px;letter-spacing:.06em;color:var(--white);line-height:1;margin-bottom:6px;}
+/* ── SETUP ── */
+#setupView{max-width:520px;margin:0 auto;padding-top:72px;}
+.setup-logo{font-family:'Bebas Neue',sans-serif;font-size:40px;color:var(--white);line-height:1;letter-spacing:.06em;margin-bottom:4px;}
 .setup-logo span{color:var(--teal);}
-.setup-sub{font-size:10px;letter-spacing:.22em;color:var(--muted);margin-bottom:48px;}
-.setup-section{margin-bottom:32px;}
-.setup-label{font-size:10px;letter-spacing:.22em;color:var(--teal);margin-bottom:10px;}
-.setup-input{width:100%;background:var(--surface);border:1px solid var(--border2);color:var(--white);font-family:'IBM Plex Mono',monospace;font-size:13px;padding:12px 14px;outline:none;transition:border-color .15s;}
-.setup-input:focus{border-color:var(--teal);}
-.setup-input::placeholder{color:#333;}
-.setup-hint{font-size:10px;color:var(--muted);margin-top:8px;line-height:1.7;}
-.setup-hint a{color:var(--teal);text-decoration:none;}
-.setup-hint a:hover{text-decoration:underline;}
-.btn-setup{font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.2em;padding:14px 32px;border:1px solid var(--teal);color:var(--teal);background:transparent;cursor:pointer;transition:all .15s;margin-top:8px;}
-.btn-setup:hover{background:var(--teal);color:#000;}
-.setup-err{font-size:11px;color:var(--red);margin-top:10px;display:none;}
+.setup-sub{font-size:10px;letter-spacing:.22em;color:var(--muted);margin-bottom:44px;}
+.s-label{font-size:9px;letter-spacing:.28em;color:var(--teal);text-transform:uppercase;margin-bottom:10px;}
+.s-input{width:100%;background:var(--surface);border:1px solid var(--border2);color:var(--white);font-family:'IBM Plex Mono',monospace;font-size:13px;padding:12px 14px;outline:none;transition:border-color .15s;margin-bottom:8px;}
+.s-input:focus{border-color:var(--teal);}
+.s-input::placeholder{color:#2e2e2e;}
+.s-hint{font-size:10px;color:var(--muted);line-height:1.85;}
+.s-hint a{color:var(--teal);text-decoration:none;}
+.s-hint a:hover{text-decoration:underline;}
+.btn-start{margin-top:22px;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.2em;padding:12px 28px;border:1px solid var(--teal);color:var(--teal);background:transparent;cursor:pointer;transition:all .15s;display:block;}
+.btn-start:hover{background:var(--teal);color:#000;}
+.s-err{font-size:11px;color:var(--red);margin-top:10px;display:none;}
 
-/* ── DASHBOARD VIEW ── */
-#dashView .dash-header{display:flex;align-items:flex-end;justify-content:space-between;border-left:3px solid var(--orange);padding-left:18px;margin-bottom:36px;flex-wrap:wrap;gap:12px;}
-.dash-title{font-family:'Bebas Neue',sans-serif;font-size:38px;letter-spacing:.06em;color:var(--white);line-height:1;}
-.dash-title span{color:var(--teal);}
-.dash-meta{font-size:10px;letter-spacing:.15em;color:var(--muted);}
-.dash-actions{display:flex;gap:8px;flex-wrap:wrap;}
-
-.episodes-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1px;background:var(--border);}
-.ep-card{background:var(--surface);padding:20px;cursor:pointer;transition:background .15s;position:relative;border-left:3px solid transparent;}
+/* ── DASHBOARD ── */
+.dash-head{display:flex;align-items:flex-end;justify-content:space-between;border-left:3px solid var(--orange);padding-left:18px;margin-bottom:36px;flex-wrap:wrap;gap:12px;}
+.dash-logo{font-family:'Bebas Neue',sans-serif;font-size:34px;letter-spacing:.06em;color:var(--white);line-height:1;}
+.dash-logo span{color:var(--teal);}
+.dash-meta{font-size:10px;letter-spacing:.15em;color:var(--muted);margin-top:4px;}
+.dash-acts{display:flex;gap:8px;flex-wrap:wrap;}
+.ep-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:1px;background:var(--border);}
+.ep-card{background:var(--surface);padding:18px;cursor:pointer;transition:background .15s;position:relative;border-left:3px solid var(--orange);}
 .ep-card:hover{background:var(--surface2);}
-.ep-card.new-card{border-left-color:var(--border2);display:flex;align-items:center;justify-content:center;min-height:120px;color:var(--muted);font-size:11px;letter-spacing:.2em;}
-.ep-card.new-card:hover{border-left-color:var(--teal);color:var(--teal);}
-.ep-card-accent{position:absolute;top:0;left:0;width:3px;height:100%;background:var(--orange);}
-.ep-card-id{font-size:9px;letter-spacing:.25em;color:var(--muted);margin-bottom:6px;}
-.ep-card-title{font-family:'Bebas Neue',sans-serif;font-size:20px;letter-spacing:.06em;color:var(--white);line-height:1.1;margin-bottom:8px;}
-.ep-card-theme{font-family:'Noto Sans JP',sans-serif;font-size:11px;color:var(--muted);line-height:1.6;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
-.ep-card-date{font-size:9px;letter-spacing:.15em;color:#333;margin-top:10px;}
-.ep-del-btn{position:absolute;top:10px;right:10px;background:transparent;border:none;color:#2a2a2a;cursor:pointer;font-size:13px;transition:color .15s;line-height:1;}
+.ep-card.nc{border-left-color:#1e1e1e;display:flex;align-items:center;justify-content:center;min-height:110px;color:var(--muted);font-size:11px;letter-spacing:.22em;}
+.ep-card.nc:hover{border-left-color:var(--teal);color:var(--teal);}
+.ep-card-id{font-size:9px;letter-spacing:.25em;color:var(--muted);margin-bottom:5px;}
+.ep-card-title{font-family:'Bebas Neue',sans-serif;font-size:17px;letter-spacing:.06em;color:var(--white);line-height:1.1;margin-bottom:5px;}
+.ep-card-sub{font-family:'Noto Sans JP',sans-serif;font-size:11px;color:var(--muted);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;line-height:1.6;}
+.ep-card-date{font-size:9px;color:#2a2a2a;margin-top:8px;letter-spacing:.1em;}
+.ep-del-btn{position:absolute;top:10px;right:10px;background:transparent;border:none;color:#252525;cursor:pointer;font-size:13px;transition:color .15s;line-height:1;}
 .ep-del-btn:hover{color:var(--red);}
 
-/* ── EDITOR VIEW ── */
-#editorView .editor-topbar{display:flex;align-items:center;gap:10px;border-bottom:1px solid var(--border);padding:12px 32px;background:var(--surface);position:sticky;top:0;z-index:100;flex-wrap:wrap;}
-.editor-topbar .back-btn{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.18em;color:var(--muted);background:transparent;border:1px solid var(--border2);padding:6px 12px;cursor:pointer;transition:all .15s;}
-.editor-topbar .back-btn:hover{border-color:var(--muted);color:var(--white);}
-.editor-topbar .ep-label{font-family:'Bebas Neue',sans-serif;font-size:16px;letter-spacing:.1em;color:var(--muted);}
-.editor-topbar .ep-title-bar{font-family:'IBM Plex Mono',monospace;font-size:13px;color:var(--white);}
-.editor-topbar-right{margin-left:auto;display:flex;gap:8px;align-items:center;}
-.sync-status{font-size:10px;letter-spacing:.12em;color:var(--muted);}
-.sync-status.synced{color:var(--teal);}
-.sync-status.error{color:var(--red);}
-.sync-status.syncing{color:var(--amber);}
+/* ── EDITOR TOPBAR ── */
+.ed-topbar{display:flex;align-items:center;gap:10px;border-bottom:1px solid var(--border);padding:10px 32px;background:var(--surface);position:sticky;top:0;z-index:100;flex-wrap:wrap;}
+.back-btn{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.18em;color:var(--muted);background:transparent;border:1px solid var(--border2);padding:6px 12px;cursor:pointer;transition:all .15s;}
+.back-btn:hover{border-color:var(--muted);color:var(--white);}
+.ep-bar-label{font-size:10px;letter-spacing:.15em;color:var(--muted);}
+.ep-bar-title{font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--white);}
+.topbar-r{margin-left:auto;display:flex;gap:8px;align-items:center;}
+.sync-st{font-size:10px;letter-spacing:.12em;color:var(--muted);}
+.sync-st.ok{color:var(--teal);}
+.sync-st.err{color:var(--red);}
+.sync-st.busy{color:var(--amber);}
 
-.editor-body{padding:36px 32px;}
+/* ── BTN ── */
+.btn{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.18em;padding:7px 13px;border:1px solid;cursor:pointer;background:transparent;transition:all .15s;white-space:nowrap;}
+.btn-t{color:var(--teal);border-color:var(--teal);}
+.btn-t:hover{background:var(--teal);color:#000;}
+.btn-g{color:var(--muted);border-color:var(--border2);}
+.btn-g:hover{border-color:var(--muted);color:var(--white);}
+.btn-o{color:var(--orange);border-color:var(--orange);}
+.btn-o:hover{background:var(--orange);color:#000;}
 
-/* ── SHARED COMPONENTS ── */
-.btn{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.18em;padding:8px 14px;border:1px solid;cursor:pointer;background:transparent;transition:all .15s;white-space:nowrap;}
-.btn-teal{color:var(--teal);border-color:var(--teal);}
-.btn-teal:hover{background:var(--teal);color:#000;}
-.btn-orange{color:var(--orange);border-color:var(--orange);}
-.btn-orange:hover{background:var(--orange);color:#000;}
-.btn-ghost{color:var(--muted);border-color:var(--border2);}
-.btn-ghost:hover{border-color:var(--muted);color:var(--white);}
-.btn-red{color:var(--red);border-color:var(--border2);}
-.btn-red:hover{border-color:var(--red);}
+/* ── EDITOR BODY ── */
+.ed-body{padding:32px;}
 
-/* Episode input */
-.episode-row{display:flex;align-items:center;gap:12px;margin-top:14px;}
-.episode-label-tag{font-size:10px;letter-spacing:.2em;color:var(--muted);white-space:nowrap;}
-.episode-input{background:transparent;border:none;border-bottom:1px solid var(--orange);color:var(--orange);font-family:'IBM Plex Mono',monospace;font-size:13px;font-weight:700;letter-spacing:.08em;padding:4px 0;width:320px;outline:none;}
-.episode-input::placeholder{color:#333;}
+/* Episode header */
+.ep-doc-head{border-left:3px solid var(--orange);padding-left:18px;margin-bottom:36px;}
+.ep-doc-head::before{content:'ANDBODY REEL STORYBOARD PROTOCOL';font-size:9px;letter-spacing:.25em;color:var(--teal);display:block;margin-bottom:8px;}
+.ep-doc-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(26px,4vw,44px);letter-spacing:.06em;color:var(--white);line-height:1;}
+.ep-doc-title span{color:var(--teal);}
+.ep-name-row{display:flex;align-items:center;gap:12px;margin-top:12px;}
+.ep-name-lbl{font-size:10px;letter-spacing:.2em;color:var(--muted);white-space:nowrap;}
+.ep-name-in{background:transparent;border:none;border-bottom:1px solid var(--orange);color:var(--orange);font-family:'IBM Plex Mono',monospace;font-size:13px;font-weight:700;letter-spacing:.08em;padding:4px 0;width:340px;outline:none;}
+.ep-name-in::placeholder{color:#2e2e2e;}
 
-/* Doc header */
-.doc-header{border-left:3px solid var(--orange);padding-left:20px;margin-bottom:36px;}
-.doc-header::before{content:'STORYBOARD PROTOCOL // LIFE REBUILDING OS';font-size:10px;letter-spacing:.2em;color:var(--teal);display:block;margin-bottom:8px;}
-.doc-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(28px,5vw,48px);letter-spacing:.06em;color:var(--white);line-height:1;}
-.doc-title span{color:var(--teal);}
-.doc-subtitle{font-size:11px;letter-spacing:.2em;color:var(--muted);margin-top:6px;}
+/* Section label */
+.sec-lbl{display:flex;align-items:center;gap:12px;margin:36px 0 14px;}
+.sec-tag{font-family:'Bebas Neue',sans-serif;font-size:15px;letter-spacing:.2em;padding:4px 14px 2px;border:1px solid;}
+.sec-tag.v{color:var(--teal);border-color:var(--teal);}
+.sec-tag.s{color:var(--orange);border-color:var(--orange);}
+.sec-tag.c{color:var(--amber);border-color:var(--amber);}
+.sec-desc{font-size:11px;color:var(--muted);letter-spacing:.08em;}
 
-/* Layer label */
-.layer-label{display:flex;align-items:center;gap:12px;margin:36px 0 16px;}
-.layer-tag{font-family:'Bebas Neue',sans-serif;font-size:18px;letter-spacing:.15em;padding:4px 14px 2px;border:1px solid;}
-.layer-tag.core{color:var(--teal);border-color:var(--teal);}
-.layer-tag.time{color:var(--orange);border-color:var(--orange);}
-.layer-desc{font-size:11px;color:var(--muted);letter-spacing:.1em;}
+/* ── LAYER 1: EPISODE VARIABLE ── */
+.var-tbl{width:100%;border-collapse:collapse;border:1px solid var(--border);}
+.var-tbl tr{border-bottom:1px solid var(--border);}
+.var-tbl tr:last-child{border-bottom:none;}
+.var-key{width:190px;padding:11px 16px;background:var(--surface2);font-size:10px;letter-spacing:.18em;color:var(--teal);border-right:1px solid var(--border);white-space:nowrap;vertical-align:middle;}
+.var-val{padding:9px 16px;background:var(--surface);}
+.var-tbl [contenteditable]{outline:none;font-family:'Noto Sans JP',sans-serif;font-size:13px;line-height:1.8;color:var(--white);font-weight:300;min-height:22px;width:100%;display:block;}
+.var-tbl [contenteditable]:empty::before{content:attr(data-placeholder);color:#282828;font-style:italic;pointer-events:none;}
+.var-tbl [contenteditable]:focus{background:rgba(255,255,255,.015);}
 
-/* Core grid */
-.core-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border);border:1px solid var(--border);}
-.core-cell{background:var(--surface);padding:16px 18px;}
-.core-cell.full{grid-column:1/-1;}
-.core-key{font-size:9px;letter-spacing:.28em;color:var(--teal);text-transform:uppercase;margin-bottom:8px;display:flex;align-items:center;gap:6px;}
-.core-key::after{content:'';flex:1;height:1px;background:var(--border);}
-.core-cell.residue .core-key{color:var(--amber);}
-[contenteditable]{outline:none;min-height:24px;font-family:'Noto Sans JP',sans-serif;font-size:13px;line-height:1.85;color:var(--white);font-weight:300;width:100%;display:block;}
-[contenteditable]:empty::before{content:attr(data-placeholder);color:#2a2a2a;font-style:italic;pointer-events:none;}
-[contenteditable]:focus{background:rgba(255,255,255,.02);}
-.core-cell.residue [contenteditable]{color:var(--amber);font-style:italic;border-left:2px solid var(--amber);padding-left:12px;}
-.core-cell.residue [contenteditable]:empty::before{color:rgba(245,166,35,.25);}
+/* ── LAYER 2: STORYBOARD ── */
+.sb-wrap{overflow-x:auto;border:1px solid var(--border);}
+.sb-tbl{border-collapse:collapse;width:100%;min-width:1140px;}
+.sb-tbl thead tr{background:#0b0b0b;}
+.sb-tbl thead th{font-family:'IBM Plex Mono',monospace;font-size:9px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);padding:11px 12px;text-align:left;border-bottom:1px solid var(--border);border-right:1px solid var(--border);white-space:nowrap;}
+.sb-tbl thead th:last-child{border-right:none;}
+.sb-tbl thead th .sub{display:block;font-size:8px;font-weight:300;letter-spacing:.1em;color:#333;margin-top:2px;}
+.sb-tbl tbody tr{border-bottom:1px solid var(--border);}
+.sb-tbl tbody td{padding:11px 12px;vertical-align:top;border-right:1px solid var(--border);}
+.sb-tbl tbody td:last-child{border-right:none;}
 
-/* Rules bar */
-.rules-bar{background:#0d0d0d;border:1px solid #1a1a1a;border-left:3px solid var(--muted);padding:10px 16px;margin:20px 0;font-size:11px;color:var(--muted);letter-spacing:.08em;display:flex;gap:12px;flex-wrap:wrap;align-items:center;}
-.rules-bar span{color:#444;white-space:nowrap;}
-.rule-input{background:transparent;border:none;border-bottom:1px solid #2a2a2a;color:var(--red);font-family:'IBM Plex Mono',monospace;font-size:11px;font-weight:700;letter-spacing:.1em;padding:2px 0;width:180px;outline:none;}
-.rule-input::placeholder{color:#2a2a2a;}
+/* Beat label */
+.beat-cell{min-width:80px;text-align:center;}
+.beat-lbl{font-family:'Bebas Neue',sans-serif;font-size:19px;letter-spacing:.1em;line-height:1;display:block;}
+.beat-time{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.1em;color:var(--muted);background:transparent;border:none;border-bottom:1px dashed #252525;outline:none;width:70px;text-align:center;padding:2px 0;margin-top:5px;display:block;margin-left:auto;margin-right:auto;}
+.beat-time::placeholder{color:#222;}
+.beat-time:focus{border-bottom-color:#444;}
 
-/* Timeline */
-.table-wrap{overflow-x:auto;border:1px solid var(--border);}
-table{width:100%;border-collapse:collapse;min-width:880px;}
-thead tr{background:var(--surface2);}
-thead th{font-family:'IBM Plex Mono',monospace;font-size:9px;font-weight:700;letter-spacing:.28em;text-transform:uppercase;color:var(--muted);padding:12px 14px;text-align:left;border-bottom:1px solid var(--border);border-right:1px solid var(--border);white-space:nowrap;}
-thead th:last-child{border-right:none;}
-tbody tr{border-bottom:1px solid var(--border);}
-tbody td{padding:12px 14px;vertical-align:top;border-right:1px solid var(--border);}
-tbody td:last-child{border-right:none;}
+/* Fixed role */
+.role-cell{min-width:155px;background:#090909;}
+.role-txt{font-family:'Noto Sans JP',sans-serif;font-size:11px;color:#333;line-height:1.75;}
 
-.gear-cell{min-width:88px;}
-.gear-name-input{font-family:'Bebas Neue',sans-serif;font-size:20px;letter-spacing:.08em;background:transparent;border:none;outline:none;width:100%;display:block;border-bottom:1px solid #1e1e1e;padding:0;line-height:1.1;margin-bottom:5px;}
-.gear-name-input::placeholder{color:#222;}
-.gear-time-input{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.15em;color:var(--muted);background:transparent;border:none;border-bottom:1px solid #181818;outline:none;width:100%;padding:0;}
-.gear-time-input::placeholder{color:#1e1e1e;}
-.seq-title-input{font-family:'Noto Sans JP',sans-serif;font-size:12px;font-weight:700;color:var(--white);background:transparent;border:none;border-bottom:1px solid #1e1e1e;outline:none;width:100%;display:block;margin-bottom:4px;padding:0;}
-.seq-title-input::placeholder{color:#232323;}
-.color-dots{display:flex;gap:4px;margin-top:7px;}
-.dot{width:9px;height:9px;border-radius:50%;cursor:pointer;border:1px solid transparent;transition:all .15s;}
-.dot:hover,.dot.active{border-color:var(--white);transform:scale(1.2);}
-.remove-btn{background:transparent;border:none;color:#222;cursor:pointer;font-size:13px;padding:2px 4px;float:right;transition:color .15s;line-height:1;}
-.remove-btn:hover{color:var(--red);}
-.vector-field{border-left:2px solid #222;padding-left:10px;margin-top:4px;}
+/* Editable cells */
+.sb-tbl [contenteditable]{outline:none;font-family:'Noto Sans JP',sans-serif;font-size:12px;line-height:1.75;color:var(--text);min-height:36px;display:block;}
+.sb-tbl [contenteditable]:empty::before{content:attr(data-placeholder);color:#252525;font-style:italic;pointer-events:none;font-size:11px;}
+.sb-tbl [contenteditable]:focus{background:rgba(255,255,255,.012);}
+.cb-cell [contenteditable]{color:#7777aa;min-height:56px;}
+.sel-cell [contenteditable]{color:var(--white);}
+.ng-cell [contenteditable]{color:#5a3333;}
 
-/* Gear colors */
-tr.gear-hook{border-left:3px solid var(--orange);}
-tr.gear-1   {border-left:3px solid #4ec9b0;}
-tr.gear-2   {border-left:3px solid #9cdcfe;}
-tr.gear-3   {border-left:3px solid var(--amber);}
-tr.gear-dark{border-left:3px solid #2a2a2a;}
-tr.gear-hook .gear-name-input{color:var(--orange);}
-tr.gear-1    .gear-name-input{color:#4ec9b0;}
-tr.gear-2    .gear-name-input{color:#9cdcfe;}
-tr.gear-3    .gear-name-input{color:var(--amber);}
-tr.gear-dark .gear-name-input{color:#555;}
-tr.gear-hook .vector-field{border-left-color:rgba(232,93,0,.35);}
-tr.gear-1    .vector-field{border-left-color:rgba(78,201,176,.35);}
-tr.gear-2    .vector-field{border-left-color:rgba(156,220,254,.35);}
-tr.gear-3    .vector-field{border-left-color:rgba(245,166,35,.35);}
+/* Beat row accent */
+tr[data-beat="hook"]        td:first-child{border-left:3px solid var(--orange);}
+tr[data-beat="observation"] td:first-child{border-left:3px solid var(--teal);}
+tr[data-beat="friction"]    td:first-child{border-left:3px solid var(--red);}
+tr[data-beat="stillness"]   td:first-child{border-left:3px solid var(--blue);}
+tr[data-beat="strategist"]  td:first-child{border-left:3px solid var(--purple);}
+tr[data-beat="oneMove"]     td:first-child{border-left:3px solid var(--green);}
+tr[data-beat="naming"]      td:first-child{border-left:3px solid var(--amber);}
 
-.add-row-btn{width:100%;background:transparent;border:1px dashed #1e1e1e;color:var(--muted);font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.2em;padding:12px;cursor:pointer;transition:all .15s;margin-top:1px;}
-.add-row-btn:hover{border-color:var(--teal);color:var(--teal);}
+tr[data-beat="hook"]        .beat-lbl{color:var(--orange);}
+tr[data-beat="observation"] .beat-lbl{color:var(--teal);}
+tr[data-beat="friction"]    .beat-lbl{color:var(--red);}
+tr[data-beat="stillness"]   .beat-lbl{color:var(--blue);}
+tr[data-beat="strategist"]  .beat-lbl{color:var(--purple);}
+tr[data-beat="oneMove"]     .beat-lbl{color:var(--green);}
+tr[data-beat="naming"]      .beat-lbl{color:var(--amber);}
 
+/* ── LAYER 3: SELECTED CUTS ── */
+.cut-wrap{overflow-x:auto;border:1px solid var(--border);}
+.cut-tbl{border-collapse:collapse;width:100%;min-width:680px;}
+.cut-tbl thead tr{background:#0b0b0b;}
+.cut-tbl thead th{font-family:'IBM Plex Mono',monospace;font-size:9px;font-weight:700;letter-spacing:.22em;color:var(--muted);padding:11px 12px;text-align:left;border-bottom:1px solid var(--border);border-right:1px solid var(--border);white-space:nowrap;}
+.cut-tbl thead th:last-child{border-right:none;}
+.cut-tbl tbody tr{border-bottom:1px solid var(--border);}
+.cut-tbl tbody td{padding:10px 12px;vertical-align:middle;border-right:1px solid var(--border);}
+.cut-tbl tbody td:last-child{border-right:none;}
+.cut-no{font-family:'Bebas Neue',sans-serif;font-size:18px;color:var(--muted);text-align:center;width:40px;}
+.cut-time-in{background:transparent;border:none;border-bottom:1px solid #222;outline:none;color:var(--text);font-family:'IBM Plex Mono',monospace;font-size:12px;width:80px;padding:2px 0;letter-spacing:.08em;}
+.cut-time-in::placeholder{color:#242424;}
+.cut-beat-sel{background:var(--surface);border:1px solid var(--border2);color:var(--text);font-family:'IBM Plex Mono',monospace;font-size:11px;padding:4px 8px;outline:none;cursor:pointer;}
+.cut-tbl [contenteditable]{outline:none;font-family:'Noto Sans JP',sans-serif;font-size:12px;color:var(--text);min-height:20px;line-height:1.7;display:block;}
+.cut-tbl [contenteditable]:empty::before{content:attr(data-placeholder);color:#242424;font-style:italic;pointer-events:none;font-size:11px;}
+.cut-del{background:transparent;border:none;color:#252525;cursor:pointer;font-size:13px;transition:color .15s;padding:2px 4px;line-height:1;}
+.cut-del:hover{color:var(--red);}
+.add-cut-btn{width:100%;background:transparent;border:1px dashed #1e1e1e;color:var(--muted);font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.2em;padding:12px;cursor:pointer;transition:all .15s;margin-top:1px;}
+.add-cut-btn:hover{border-color:var(--amber);color:var(--amber);}
+
+/* ── FOOTER ── */
 .doc-footer{margin-top:40px;padding-top:20px;border-top:1px solid var(--border);font-size:10px;color:var(--muted);display:flex;justify-content:space-between;letter-spacing:.12em;flex-wrap:wrap;gap:8px;}
 
-/* Toast */
-.toast{position:fixed;bottom:24px;right:24px;background:var(--surface2);border:1px solid var(--teal);color:var(--teal);font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.12em;padding:12px 20px;opacity:0;transform:translateY(8px);transition:all .25s;pointer-events:none;z-index:9999;}
+/* ── LOADER / TOAST ── */
+.loader{position:fixed;inset:0;background:var(--bg);display:flex;align-items:center;justify-content:center;z-index:9999;transition:opacity .3s;}
+.loader.hidden{opacity:0;pointer-events:none;}
+.loader-txt{font-family:'Bebas Neue',sans-serif;font-size:16px;letter-spacing:.28em;color:var(--muted);}
+.toast{position:fixed;bottom:24px;right:24px;background:var(--surface2);border:1px solid var(--teal);color:var(--teal);font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.12em;padding:12px 20px;opacity:0;transform:translateY(8px);transition:all .25s;pointer-events:none;z-index:9998;}
 .toast.show{opacity:1;transform:translateY(0);}
 
-/* Loader */
-.loader{position:fixed;inset:0;background:var(--bg);display:flex;align-items:center;justify-content:center;z-index:9998;transition:opacity .3s;}
-.loader.hidden{opacity:0;pointer-events:none;}
-.loader-text{font-family:'Bebas Neue',sans-serif;font-size:18px;letter-spacing:.2em;color:var(--muted);}
-
+/* ── RESPONSIVE ── */
 @media(max-width:640px){
-  .view{padding:24px 16px;}
-  .editor-body{padding:24px 16px;}
-  .core-grid{grid-template-columns:1fr;}
-  .core-cell.full{grid-column:1;}
-  .episode-input{width:180px;}
-  #editorView .editor-topbar{padding:10px 16px;}
+  .view{padding:20px 16px;}
+  .ed-body{padding:20px 16px;}
+  .ed-topbar{padding:8px 16px;}
+  .ep-name-in{width:190px;}
 }
 @media print{
-  .editor-topbar,.add-row-btn,.remove-btn,.color-dots,.dash-actions{display:none!important;}
+  .ed-topbar,.add-cut-btn,.ep-del-btn,.cut-del,.back-btn,.dash-acts,.btn{display:none!important;}
   body{background:#fff;color:#111;}
-  :root{--bg:#fff;--surface:#f9f9f9;--surface2:#f0f0f0;--border:#ddd;--teal:#007a7e;--orange:#b84500;--amber:#b07800;--text:#222;--white:#000;}
-  [contenteditable]{color:#111;}
+  :root{--bg:#fff;--surface:#f9f9f9;--surface2:#f0f0f0;--border:#ddd;--teal:#007a7e;--orange:#b84500;--amber:#b07800;--red:#a00;--purple:#555;--green:#1a6e37;--blue:#2a5a8a;--text:#222;--white:#000;--muted:#666;}
+  .role-txt{color:#888;}
+  .cb-cell [contenteditable]{color:#444;}
+  .ng-cell [contenteditable]{color:#a05050;}
 }
 </style>
 </head>
 <body>
 
-<!-- LOADER -->
-<div class="loader" id="loader"><span class="loader-text">LOADING...</span></div>
+<div class="loader" id="loader"><span class="loader-txt">LOADING...</span></div>
 
-<!-- ═══════════════════════════════════════════
-     SETUP VIEW
-════════════════════════════════════════════ -->
+<!-- ══════════════════════════════════════
+     SETUP
+══════════════════════════════════════ -->
 <div class="view" id="setupView">
-  <div class="setup-logo">Life Rebuilding <span>OS</span></div>
+  <div class="setup-logo">ANDBODY <span>OS</span></div>
   <div class="setup-sub">STORYBOARD PROTOCOL — FIRST SETUP</div>
-
-  <div class="setup-section">
-    <div class="setup-label">GITHUB PERSONAL ACCESS TOKEN</div>
-    <input class="setup-input" type="password" id="patInput" placeholder="ghp_xxxxxxxxxxxxxxxxxxxx">
-    <div class="setup-hint">
-      取得方法：<a href="https://github.com/settings/tokens/new" target="_blank">github.com/settings/tokens/new</a> を開く<br>
-      → Note に「storyboard」と入力<br>
-      → Expiration は「No expiration」<br>
-      → Scopes で <strong style="color:var(--white)">gist</strong> にチェック<br>
-      → Generate token → コピーしてここに貼る
-    </div>
+  <div class="s-label">GITHUB PERSONAL ACCESS TOKEN</div>
+  <input class="s-input" type="password" id="patInput" placeholder="ghp_xxxxxxxxxxxxxxxxxxxx">
+  <div class="s-hint">
+    取得：<a href="https://github.com/settings/tokens/new" target="_blank">github.com/settings/tokens/new</a><br>
+    Note: <strong style="color:var(--white)">storyboard</strong> 　Expiration: <strong style="color:var(--white)">No expiration</strong><br>
+    Scopes: <strong style="color:var(--teal)">gist</strong> にチェック → Generate → コピー
   </div>
-
-  <button class="btn-setup" onclick="setupGist()">▸ 接続して始める</button>
-  <div class="setup-err" id="setupErr"></div>
+  <button class="btn-start" onclick="doSetup()">▸ 接続して始める</button>
+  <div class="s-err" id="sErr"></div>
 </div>
 
-<!-- ═══════════════════════════════════════════
-     DASHBOARD VIEW
-════════════════════════════════════════════ -->
+<!-- ══════════════════════════════════════
+     DASHBOARD
+══════════════════════════════════════ -->
 <div class="view" id="dashView">
-  <div class="dash-header">
+  <div class="dash-head">
     <div>
-      <div class="dash-title">Life Rebuilding <span>OS</span></div>
-      <div class="dash-meta">STORYBOARD LIBRARY</div>
+      <div class="dash-logo">ANDBODY <span>OS</span></div>
+      <div class="dash-meta">REEL STORYBOARD LIBRARY</div>
     </div>
-    <div class="dash-actions">
-      <button class="btn btn-teal" onclick="newEpisode()">+ NEW EPISODE</button>
-      <button class="btn btn-ghost" onclick="syncFromGist()">↻ SYNC</button>
-      <button class="btn btn-ghost" onclick="resetSetup()">⚙ RESET TOKEN</button>
+    <div class="dash-acts">
+      <button class="btn btn-t" onclick="newEp()">+ NEW EPISODE</button>
+      <button class="btn btn-g" onclick="syncDash()">↻ SYNC</button>
+      <button class="btn btn-g" onclick="resetPAT()">⚙ RESET TOKEN</button>
     </div>
   </div>
-  <div class="episodes-grid" id="episodesGrid"></div>
+  <div class="ep-grid" id="epGrid"></div>
 </div>
 
-<!-- ═══════════════════════════════════════════
-     EDITOR VIEW
-════════════════════════════════════════════ -->
+<!-- ══════════════════════════════════════
+     EDITOR
+══════════════════════════════════════ -->
 <div class="view" id="editorView">
-  <div class="editor-topbar">
+  <div class="ed-topbar">
     <button class="back-btn" onclick="backToDash()">← LIBRARY</button>
-    <span class="ep-label">EPISODE /</span>
-    <span class="ep-title-bar" id="editorEpLabel">—</span>
-    <div class="editor-topbar-right">
-      <span class="sync-status" id="syncStatus">—</span>
-      <button class="btn btn-teal" onclick="saveEpisode()">↑ SAVE</button>
-      <button class="btn btn-ghost" onclick="window.print()">⊞ PRINT</button>
+    <span class="ep-bar-label">EPISODE /</span>
+    <span class="ep-bar-title" id="epBarTitle">—</span>
+    <div class="topbar-r">
+      <span class="sync-st" id="syncSt">—</span>
+      <button class="btn btn-t" onclick="saveEp()">↑ SAVE</button>
+      <button class="btn btn-g" onclick="window.print()">⊞ PRINT</button>
     </div>
   </div>
 
-  <div class="editor-body">
-    <div class="doc-header">
-      <div class="doc-title">Life Rebuilding <span>OS</span><br>Storyboard Protocol</div>
-      <div class="doc-subtitle">CINEMATIC DOCUMENTARY // VISUAL GRAMMAR ONLY // NO DIALOGUE / NO NARRATION</div>
-      <div class="episode-row">
-        <span class="episode-label-tag">EPISODE :</span>
-        <input class="episode-input" id="episodeInput" type="text" placeholder="タイトルを入力..." maxlength="60" oninput="document.getElementById('editorEpLabel').textContent=this.value||'—'">
+  <div class="ed-body">
+
+    <!-- Episode header -->
+    <div class="ep-doc-head">
+      <div class="ep-doc-title">ANDBODY <span>OS</span><br>Storyboard Protocol</div>
+      <div class="ep-name-row">
+        <span class="ep-name-lbl">EPISODE :</span>
+        <input class="ep-name-in" id="epNameIn" type="text" placeholder="エピソードタイトル..." maxlength="60"
+          oninput="document.getElementById('epBarTitle').textContent=this.value||'—'">
       </div>
     </div>
 
-    <!-- CORE -->
-    <div class="layer-label">
-      <div class="layer-tag core">THE CORE</div>
-      <div class="layer-desc">思想レイヤー — ここが埋まらなければ下段のカメラ位置は1つも決まらない</div>
+    <!-- ─ LAYER 1: EPISODE VARIABLE ─ -->
+    <div class="sec-lbl">
+      <div class="sec-tag v">EPISODE VARIABLE</div>
+      <div class="sec-desc">毎回変える9項目 — ここが変わらなければ毎回同じ映像になる</div>
     </div>
-    <div class="core-grid">
-      <div class="core-cell">
-        <div class="core-key">Theme — 物理的テーマ</div>
-        <div contenteditable="true" id="core_theme" data-placeholder="映像の物理的テーマを記述..."></div>
-      </div>
-      <div class="core-cell">
-        <div class="core-key">Target — 標的</div>
-        <div contenteditable="true" id="core_target" data-placeholder="この映像が刺す相手を定義..."></div>
-      </div>
-      <div class="core-cell">
-        <div class="core-key">Temperature — 温度と摩擦</div>
-        <div contenteditable="true" id="core_temp" data-placeholder="感情的温度の推移を記述..."></div>
-      </div>
-      <div class="core-cell full residue">
-        <div class="core-key">The Residue — 暗転後に残す問い</div>
-        <div contenteditable="true" id="core_residue" data-placeholder="「視聴者の脳内に植えつける最後の問いを一文で...」"></div>
-      </div>
-    </div>
+    <table class="var-tbl">
+      <tr>
+        <td class="var-key">今回のテーマ</td>
+        <td class="var-val"><div contenteditable="true" id="v_theme" data-placeholder="アンチエイジング／メンタル／食事／筋トレ／AI活用 など"></div></td>
+      </tr>
+      <tr>
+        <td class="var-key">今回の問い</td>
+        <td class="var-val"><div contenteditable="true" id="v_question" data-placeholder="視聴者に刺す問い（一文で）"></div></td>
+      </tr>
+      <tr>
+        <td class="var-key">今回の敵</td>
+        <td class="var-val"><div contenteditable="true" id="v_enemy" data-placeholder="最後に命名する敵（命名BEATで使う）"></div></td>
+      </tr>
+      <tr>
+        <td class="var-key">今回の一手</td>
+        <td class="var-val"><div contenteditable="true" id="v_oneMove" data-placeholder="AIが出す最小行動（小さくていい）"></div></td>
+      </tr>
+      <tr>
+        <td class="var-key">今回の主感情</td>
+        <td class="var-val"><div contenteditable="true" id="v_emotion" data-placeholder="疲労／虚無／焦り／罪悪感／孤独／怒り／希望"></div></td>
+      </tr>
+      <tr>
+        <td class="var-key">今回の映像モチーフ</td>
+        <td class="var-val"><div contenteditable="true" id="v_visual" data-placeholder="水／鉄／火花／夜道／手／背中／光／食事／ログ"></div></td>
+      </tr>
+      <tr>
+        <td class="var-key">今回の音モチーフ</td>
+        <td class="var-val"><div contenteditable="true" id="v_audio" data-placeholder="エンジン音／水音／鉄音／打鍵音／無音／呼吸"></div></td>
+      </tr>
+      <tr>
+        <td class="var-key">今回の色・光</td>
+        <td class="var-val"><div contenteditable="true" id="v_light" data-placeholder="青白いPC光／溶接光／暖色の食事光／暗いジム光"></div></td>
+      </tr>
+      <tr>
+        <td class="var-key">今回見せないもの</td>
+        <td class="var-val"><div contenteditable="true" id="v_dontShow" data-placeholder="自己啓発臭／説明／成果自慢／AI画面の長見せ"></div></td>
+      </tr>
+    </table>
 
-    <!-- TIMELINE -->
-    <div class="layer-label" style="margin-top:44px;">
-      <div class="layer-tag time">THE TIMELINE</div>
-      <div class="layer-desc">物理レイヤー — 逆算型ショットリスト / 感情のギアチェンジを意識した時間軸</div>
+    <!-- ─ LAYER 2: STORYBOARD ─ -->
+    <div class="sec-lbl">
+      <div class="sec-tag s">STORYBOARD</div>
+      <div class="sec-desc">BEATは7本固定 — 毎回変えるのは変数・CUT BANK・選抜・音・テロップ・NG</div>
     </div>
-    <div class="rules-bar">
-      <span>規律 :</span>
-      <input class="rule-input" id="rule1" type="text" placeholder="制約 1..." maxlength="24">
-      <input class="rule-input" id="rule2" type="text" placeholder="制約 2..." maxlength="24">
-      <input class="rule-input" id="rule3" type="text" placeholder="制約 3..." maxlength="24">
-    </div>
-    <div class="table-wrap">
-      <table>
+    <div class="sb-wrap">
+      <table class="sb-tbl">
         <thead>
           <tr>
-            <th>ギア / 尺</th>
-            <th>シークエンス（行動）</th>
-            <th>映像言語 Visual &amp; Camera</th>
-            <th>音響設計 Audio</th>
-            <th>感情ベクトル（目的）</th>
+            <th style="min-width:80px">BEAT<br><span class="sub">/ 時間目安</span></th>
+            <th style="min-width:155px">固定の役割<br><span class="sub">毎回変わらない</span></th>
+            <th style="min-width:140px">今回の変数<br><span class="sub">毎回変える</span></th>
+            <th style="min-width:175px">CUT BANK<br><span class="sub">複数候補を列挙</span></th>
+            <th style="min-width:150px">選抜カット<br><span class="sub">実際に使う</span></th>
+            <th style="min-width:140px">音響設計</th>
+            <th style="min-width:145px">テロップ候補</th>
+            <th style="min-width:125px">NG / 削るもの</th>
           </tr>
         </thead>
-        <tbody id="timelineBody"></tbody>
+        <tbody id="sbBody"></tbody>
       </table>
     </div>
-    <button class="add-row-btn" onclick="addRow()">+ ギアを追加</button>
+
+    <!-- ─ LAYER 3: SELECTED CUTS ─ -->
+    <div class="sec-lbl">
+      <div class="sec-tag c">選抜カット表</div>
+      <div class="sec-desc">実撮影用 — 秒数ベース・順番どおりに並べる</div>
+    </div>
+    <div class="cut-wrap">
+      <table class="cut-tbl">
+        <thead>
+          <tr>
+            <th style="width:40px">No.</th>
+            <th style="width:88px">秒数</th>
+            <th style="width:96px">BEAT</th>
+            <th>カット</th>
+            <th style="min-width:155px">目的</th>
+            <th style="width:34px"></th>
+          </tr>
+        </thead>
+        <tbody id="cutBody"></tbody>
+      </table>
+    </div>
+    <button class="add-cut-btn" onclick="addCut()">+ カットを追加</button>
+
     <div class="doc-footer">
-      <div>LIFE REBUILDING OS // STORYBOARD PROTOCOL</div>
-      <div>FORMAT: 24fps · 16:9 · STATIC CAMERA ONLY</div>
+      <div>ANDBODY OS // STORYBOARD PROTOCOL</div>
+      <div>BEAT固定 · カット数可変 · 顔出し不可 · 感情的BGM禁止</div>
     </div>
   </div>
 </div>
@@ -321,258 +365,356 @@ tr.gear-3    .vector-field{border-left-color:rgba(245,166,35,.35);}
 <div class="toast" id="toast"></div>
 
 <script>
-/* ═══════════════════ CONSTANTS ═══════════════════ */
-const GEAR_COLORS=[{cls:'gear-hook',hex:'#e85d00'},{cls:'gear-1',hex:'#4ec9b0'},{cls:'gear-2',hex:'#9cdcfe'},{cls:'gear-3',hex:'#f5a623'},{cls:'gear-dark',hex:'#555555'}];
-const DEFAULT_ROWS=[{cls:'gear-hook',gearName:'Hook',time:'0:00 – 0:04'},{cls:'gear-1',gearName:'1速',time:'0:04 – 0:30'},{cls:'gear-2',gearName:'2速',time:'0:30 – 0:60'},{cls:'gear-3',gearName:'3速',time:'0:60 – 0:85'},{cls:'gear-dark',gearName:'暗転',time:'0:85 – 0:90'}];
+/* ══════ BEAT DEFINITIONS ══════ */
+const BEATS = [
+  {
+    id: 'hook', label: 'HOOK',
+    role: '違和感で止める。「この男は何者だ？」と思わせる。顔は出さない。断片と音だけで強制停止させる。'
+  },
+  {
+    id: 'observation', label: '観測',
+    role: '朝、自分の状態を読む。「俺も感覚だけで一日を始めている」と思わせる。Oura・水・nao-os入力。'
+  },
+  {
+    id: 'friction', label: '摩耗',
+    role: '通勤・溶接・帰路で削られる証拠を見せる。「本当に働いて削られている」と思わせる。'
+  },
+  {
+    id: 'stillness', label: '静止',
+    role: '帰宅後、動けず止まる。「俺もここで負けている」と思わせる。第二フック。2秒無音。'
+  },
+  {
+    id: 'strategist', label: '参謀',
+    role: 'AIを開き、疲労した自分を再判断する。AIは冷たい参謀。画面は長く見せない。冷光・手元・決定文だけで表現する。'
+  },
+  {
+    id: 'oneMove', label: '一手',
+    role: 'AIが出した最小行動を一つ実行する。1杯・1セット・1行・5分。「これなら自分にもできる」と思わせる。'
+  },
+  {
+    id: 'naming', label: '命名',
+    role: '最後に敵を定義する。「敵は〇〇だ」と言い切る。黒画面。テロップのみ。説明しない。'
+  },
+];
 
-let PAT='', GIST_ID='', EPISODES={}, currentEpId=null;
-const LS_PAT='lro_pat', LS_GIST='lro_gist';
+/* ══════ STATE ══════ */
+let PAT = '', GID = '', EPS = {}, CUR = null;
+const K_PAT = 'abd_pat', K_GID = 'abd_gid';
 
-/* ═══════════════════ TOAST ═══════════════════ */
-function toast(msg,ok=true){
-  const t=document.getElementById('toast');
-  t.textContent=msg;
-  t.style.borderColor=ok?'var(--teal)':'var(--orange)';
-  t.style.color=ok?'var(--teal)':'var(--orange)';
+/* ══════ UTILS ══════ */
+function toast(msg, ok=true) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.style.borderColor = ok ? 'var(--teal)' : 'var(--orange)';
+  t.style.color = ok ? 'var(--teal)' : 'var(--orange)';
   t.classList.add('show');
   clearTimeout(t._t);
-  t._t=setTimeout(()=>t.classList.remove('show'),2800);
+  t._t = setTimeout(() => t.classList.remove('show'), 2800);
 }
-
-/* ═══════════════════ VIEWS ═══════════════════ */
-function showView(id){
-  document.querySelectorAll('.view').forEach(v=>v.classList.remove('active'));
+function view(id) {
+  document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
   document.getElementById(id).classList.add('active');
 }
-
-/* ═══════════════════ GIST API ═══════════════════ */
-async function gistGet(){
-  const r=await fetch(`https://api.github.com/gists/${GIST_ID}`,{headers:{Authorization:`token ${PAT}`,'Accept':'application/vnd.github+json'}});
-  if(!r.ok)throw new Error(`GET ${r.status}`);
-  const d=await r.json();
-  const raw=d.files?.['lro_storyboard.json']?.content;
-  return raw?JSON.parse(raw):{episodes:{}};
+function esc(s) {
+  return String(s||'').replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
 }
-async function gistPatch(data){
-  const r=await fetch(`https://api.github.com/gists/${GIST_ID}`,{method:'PATCH',headers:{Authorization:`token ${PAT}`,'Accept':'application/vnd.github+json','Content-Type':'application/json'},body:JSON.stringify({files:{'lro_storyboard.json':{content:JSON.stringify(data,null,2)}}})});
-  if(!r.ok)throw new Error(`PATCH ${r.status}`);
-}
-async function gistCreate(){
-  const r=await fetch('https://api.github.com/gists',{method:'POST',headers:{Authorization:`token ${PAT}`,'Accept':'application/vnd.github+json','Content-Type':'application/json'},body:JSON.stringify({description:'Life Rebuilding OS — Storyboard Data',public:false,files:{'lro_storyboard.json':{content:JSON.stringify({episodes:{}},null,2)}}})});
-  if(!r.ok)throw new Error(`CREATE ${r.status}`);
-  const d=await r.json();
-  return d.id;
+function strip(s) { return (s||'').replace(/<[^>]*>/g,'').trim(); }
+function setSS(msg, c='') {
+  const e = document.getElementById('syncSt');
+  e.textContent = msg;
+  e.className = 'sync-st' + (c?' '+c:'');
 }
 
-/* ═══════════════════ SETUP ═══════════════════ */
-async function setupGist(){
-  const pat=document.getElementById('patInput').value.trim();
-  const err=document.getElementById('setupErr');
-  err.style.display='none';
-  if(!pat){err.textContent='トークンを入力してください';err.style.display='block';return;}
-  PAT=pat;
-  try{
-    // verify token
-    const r=await fetch('https://api.github.com/user',{headers:{Authorization:`token ${PAT}`}});
-    if(!r.ok)throw new Error('トークンが無効です');
-    // check for existing gist
-    const gr=await fetch('https://api.github.com/gists?per_page=100',{headers:{Authorization:`token ${PAT}`,'Accept':'application/vnd.github+json'}});
-    const gists=await gr.json();
-    const existing=gists.find(g=>g.files?.['lro_storyboard.json']);
-    if(existing){GIST_ID=existing.id;}
-    else{GIST_ID=await gistCreate();}
-    localStorage.setItem(LS_PAT,PAT);
-    localStorage.setItem(LS_GIST,GIST_ID);
-    await loadAndShowDash();
-  }catch(e){
-    err.textContent=e.message||'接続に失敗しました';
-    err.style.display='block';
+/* ══════ GIST API ══════ */
+const GH = 'https://api.github.com';
+const FILE = 'andbody_storyboard.json';
+
+async function gGet() {
+  const r = await fetch(`${GH}/gists/${GID}`, { headers: { Authorization:`token ${PAT}`, Accept:'application/vnd.github+json' } });
+  if (!r.ok) throw new Error('GET '+r.status);
+  const d = await r.json();
+  const raw = d.files?.[FILE]?.content;
+  return raw ? JSON.parse(raw) : { episodes:{} };
+}
+async function gPatch(data) {
+  const r = await fetch(`${GH}/gists/${GID}`, {
+    method:'PATCH',
+    headers: { Authorization:`token ${PAT}`, Accept:'application/vnd.github+json', 'Content-Type':'application/json' },
+    body: JSON.stringify({ files:{ [FILE]:{ content: JSON.stringify(data,null,2) } } })
+  });
+  if (!r.ok) throw new Error('PATCH '+r.status);
+}
+async function gCreate() {
+  const r = await fetch(`${GH}/gists`, {
+    method:'POST',
+    headers: { Authorization:`token ${PAT}`, Accept:'application/vnd.github+json', 'Content-Type':'application/json' },
+    body: JSON.stringify({ description:'ANDBODY OS Storyboard', public:false, files:{ [FILE]:{ content: JSON.stringify({episodes:{}},null,2) } } })
+  });
+  if (!r.ok) throw new Error('CREATE '+r.status);
+  return (await r.json()).id;
+}
+
+/* ══════ SETUP ══════ */
+async function doSetup() {
+  const pat = document.getElementById('patInput').value.trim();
+  const err = document.getElementById('sErr');
+  err.style.display = 'none';
+  if (!pat) { err.textContent='トークンを入力してください'; err.style.display='block'; return; }
+  PAT = pat;
+  try {
+    const ru = await fetch(`${GH}/user`, { headers:{ Authorization:`token ${PAT}` } });
+    if (!ru.ok) throw new Error('トークンが無効です');
+    const rg = await fetch(`${GH}/gists?per_page=100`, { headers:{ Authorization:`token ${PAT}`, Accept:'application/vnd.github+json' } });
+    const gs = await rg.json();
+    const ex = gs.find(g => g.files?.[FILE]);
+    GID = ex ? ex.id : await gCreate();
+    localStorage.setItem(K_PAT, PAT);
+    localStorage.setItem(K_GID, GID);
+    await loadDash();
+  } catch(e) {
+    err.textContent = e.message;
+    err.style.display = 'block';
   }
 }
 
-function resetSetup(){
-  if(!confirm('トークン設定をリセットしますか？データは削除されません。'))return;
-  localStorage.removeItem(LS_PAT);
-  localStorage.removeItem(LS_GIST);
-  PAT='';GIST_ID='';
-  showView('setupView');
+function resetPAT() {
+  if (!confirm('トークン設定をリセットしますか？データは削除されません。')) return;
+  localStorage.removeItem(K_PAT);
+  localStorage.removeItem(K_GID);
+  PAT=''; GID='';
+  view('setupView');
 }
 
-/* ═══════════════════ DASHBOARD ═══════════════════ */
-async function loadAndShowDash(){
+/* ══════ DASHBOARD ══════ */
+async function loadDash() {
   document.getElementById('loader').classList.remove('hidden');
-  try{
-    const data=await gistGet();
-    EPISODES=data.episodes||{};
+  try {
+    const d = await gGet();
+    EPS = d.episodes || {};
     renderDash();
-    showView('dashView');
-  }catch(e){
-    toast('Gistの読み込みに失敗：'+e.message,false);
-  }finally{
+    view('dashView');
+  } catch(e) {
+    toast('Gist読み込み失敗：'+e.message, false);
+  } finally {
     document.getElementById('loader').classList.add('hidden');
   }
 }
 
-async function syncFromGist(){
-  try{
-    const data=await gistGet();
-    EPISODES=data.episodes||{};
+async function syncDash() {
+  try {
+    const d = await gGet();
+    EPS = d.episodes || {};
     renderDash();
     toast('↻ 同期完了');
-  }catch(e){toast('同期失敗：'+e.message,false);}
+  } catch(e) { toast('同期失敗：'+e.message, false); }
 }
 
-function renderDash(){
-  const grid=document.getElementById('episodesGrid');
-  grid.innerHTML='';
-  const ids=Object.keys(EPISODES).sort((a,b)=>(EPISODES[b].updatedAt||0)-(EPISODES[a].updatedAt||0));
-  ids.forEach(id=>{
-    const ep=EPISODES[id];
-    const card=document.createElement('div');
-    card.className='ep-card';
-    card.innerHTML=`
-      <div class="ep-card-accent"></div>
-      <button class="ep-del-btn" onclick="event.stopPropagation();deleteEpisode('${id}')">✕</button>
-      <div class="ep-card-id">EP. ${id.slice(-4).toUpperCase()}</div>
-      <div class="ep-card-title">${ep.episode||'UNTITLED'}</div>
-      <div class="ep-card-theme">${stripHtml(ep.core_theme)||'—'}</div>
-      <div class="ep-card-date">${ep.updatedAt?new Date(ep.updatedAt).toLocaleDateString('ja-JP'):''}</div>
-    `;
-    card.onclick=()=>openEpisode(id);
-    grid.appendChild(card);
-  });
-  // new card
-  const nc=document.createElement('div');
-  nc.className='ep-card new-card';
-  nc.textContent='+ NEW EPISODE';
-  nc.onclick=newEpisode;
+function renderDash() {
+  const grid = document.getElementById('epGrid');
+  grid.innerHTML = '';
+  Object.keys(EPS)
+    .sort((a,b) => (EPS[b].updatedAt||0) - (EPS[a].updatedAt||0))
+    .forEach(id => {
+      const ep = EPS[id];
+      const c = document.createElement('div');
+      c.className = 'ep-card';
+      c.innerHTML = `
+        <button class="ep-del-btn" onclick="event.stopPropagation();delEp('${id}')">✕</button>
+        <div class="ep-card-id">EP. ${id.slice(-4).toUpperCase()}</div>
+        <div class="ep-card-title">${ep.episode||'UNTITLED'}</div>
+        <div class="ep-card-sub">${ep.variable?.enemy ? '敵: '+strip(ep.variable.enemy) : ep.variable?.theme ? strip(ep.variable.theme) : '—'}</div>
+        <div class="ep-card-date">${ep.updatedAt ? new Date(ep.updatedAt).toLocaleDateString('ja-JP') : ''}</div>
+      `;
+      c.onclick = () => openEp(id);
+      grid.appendChild(c);
+    });
+  const nc = document.createElement('div');
+  nc.className = 'ep-card nc';
+  nc.textContent = '+ NEW EPISODE';
+  nc.onclick = newEp;
   grid.appendChild(nc);
 }
 
-function stripHtml(s){return (s||'').replace(/<[^>]*>/g,'').trim();}
-
-function newEpisode(){
-  currentEpId='ep_'+Date.now();
-  EPISODES[currentEpId]={episode:'',core_theme:'',core_target:'',core_temp:'',core_residue:'',rule1:'',rule2:'',rule3:'',rows:DEFAULT_ROWS,updatedAt:Date.now()};
-  loadEditor(EPISODES[currentEpId]);
-  showView('editorView');
+function newEp() {
+  CUR = 'ep_'+Date.now();
+  EPS[CUR] = emptyEp();
+  loadEditor(EPS[CUR]);
+  view('editorView');
 }
 
-function openEpisode(id){
-  currentEpId=id;
-  loadEditor(EPISODES[id]);
-  showView('editorView');
+function openEp(id) {
+  CUR = id;
+  loadEditor(EPS[id]);
+  view('editorView');
 }
 
-async function deleteEpisode(id){
-  if(!confirm('このエピソードを削除しますか？'))return;
-  delete EPISODES[id];
+async function delEp(id) {
+  if (!confirm('このエピソードを削除しますか？')) return;
+  delete EPS[id];
   renderDash();
-  try{await gistPatch({episodes:EPISODES});toast('削除・保存完了');}
-  catch(e){toast('削除はローカルのみ（Gist未同期）：'+e.message,false);}
+  try { await gPatch({episodes:EPS}); toast('削除・保存完了'); }
+  catch(e) { toast('ローカル削除のみ（Gist未同期）',false); }
 }
 
-function backToDash(){
+function backToDash() {
   renderDash();
-  showView('dashView');
+  view('dashView');
 }
 
-/* ═══════════════════ EDITOR ═══════════════════ */
-function loadEditor(ep){
-  document.getElementById('episodeInput').value=ep.episode||'';
-  document.getElementById('editorEpLabel').textContent=ep.episode||'—';
-  document.getElementById('core_theme').innerHTML=ep.core_theme||'';
-  document.getElementById('core_target').innerHTML=ep.core_target||'';
-  document.getElementById('core_temp').innerHTML=ep.core_temp||'';
-  document.getElementById('core_residue').innerHTML=ep.core_residue||'';
-  document.getElementById('rule1').value=ep.rule1||'';
-  document.getElementById('rule2').value=ep.rule2||'';
-  document.getElementById('rule3').value=ep.rule3||'';
-  document.getElementById('timelineBody').innerHTML='';
-  (ep.rows?.length?ep.rows:DEFAULT_ROWS).forEach(r=>addRow(r));
-  setSyncStatus('—','');
-}
-
-function collectEditor(){
-  const rows=[];
-  document.querySelectorAll('#timelineBody tr').forEach(tr=>{
-    const cls=GEAR_COLORS.find(c=>tr.classList.contains(c.cls))?.cls||'gear-hook';
-    const ce=tr.querySelectorAll('[contenteditable]');
-    rows.push({cls,gearName:tr.querySelector('.gear-name-input')?.value||'',time:tr.querySelector('.gear-time-input')?.value||'',seqTitle:tr.querySelector('.seq-title-input')?.value||'',seqSub:ce[0]?.innerHTML||'',visual:ce[1]?.innerHTML||'',audio:ce[2]?.innerHTML||'',vector:ce[3]?.innerHTML||''});
+/* ══════ EMPTY EPISODE ══════ */
+function emptyEp() {
+  const beats = {};
+  BEATS.forEach(b => {
+    beats[b.id] = { time:'', variable:'', cutBank:'', selectedCut:'', audio:'', telop:'', ng:'' };
   });
-  return{episode:document.getElementById('episodeInput').value,core_theme:document.getElementById('core_theme').innerHTML,core_target:document.getElementById('core_target').innerHTML,core_temp:document.getElementById('core_temp').innerHTML,core_residue:document.getElementById('core_residue').innerHTML,rule1:document.getElementById('rule1').value,rule2:document.getElementById('rule2').value,rule3:document.getElementById('rule3').value,rows,updatedAt:Date.now()};
+  return {
+    episode: '',
+    variable: { theme:'', question:'', enemy:'', oneMove:'', emotion:'', visual:'', audio:'', light:'', dontShow:'' },
+    beats,
+    selectedCuts: [],
+    updatedAt: Date.now()
+  };
 }
 
-async function saveEpisode(){
-  setSyncStatus('SAVING...','syncing');
-  EPISODES[currentEpId]=collectEditor();
-  try{
-    await gistPatch({episodes:EPISODES});
-    setSyncStatus('✓ SAVED','synced');
+/* ══════ EDITOR ══════ */
+const VAR_KEYS = ['theme','question','enemy','oneMove','emotion','visual','audio','light','dontShow'];
+
+function loadEditor(ep) {
+  document.getElementById('epNameIn').value = ep.episode || '';
+  document.getElementById('epBarTitle').textContent = ep.episode || '—';
+
+  VAR_KEYS.forEach(k => {
+    const el = document.getElementById('v_'+k);
+    if (el) el.innerHTML = ep.variable?.[k] || '';
+  });
+
+  renderSbBody(ep.beats || {});
+
+  document.getElementById('cutBody').innerHTML = '';
+  (ep.selectedCuts || []).forEach(c => addCut(c));
+
+  setSS('—');
+}
+
+function renderSbBody(beats) {
+  const tbody = document.getElementById('sbBody');
+  tbody.innerHTML = '';
+  BEATS.forEach(def => {
+    const b = beats[def.id] || {};
+    const tr = document.createElement('tr');
+    tr.dataset.beat = def.id;
+    tr.innerHTML = `
+      <td class="beat-cell">
+        <span class="beat-lbl">${def.label}</span>
+        <input class="beat-time" type="text" value="${esc(b.time||'')}" placeholder="0:00~0:00" maxlength="12" data-bid="${def.id}" data-f="time">
+      </td>
+      <td class="role-cell"><div class="role-txt">${def.role}</div></td>
+      <td><div contenteditable="true" data-placeholder="今回の変数を記述..." data-bid="${def.id}" data-f="variable">${b.variable||''}</div></td>
+      <td class="cb-cell"><div contenteditable="true" data-placeholder="候補カット 1&#10;候補カット 2&#10;候補カット 3..." data-bid="${def.id}" data-f="cutBank" style="min-height:60px;white-space:pre-wrap;">${b.cutBank||''}</div></td>
+      <td class="sel-cell"><div contenteditable="true" data-placeholder="実際に使うカット..." data-bid="${def.id}" data-f="selectedCut">${b.selectedCut||''}</div></td>
+      <td><div contenteditable="true" data-placeholder="音響設計..." data-bid="${def.id}" data-f="audio">${b.audio||''}</div></td>
+      <td><div contenteditable="true" data-placeholder="テロップ一言..." data-bid="${def.id}" data-f="telop">${b.telop||''}</div></td>
+      <td class="ng-cell"><div contenteditable="true" data-placeholder="避けること..." data-bid="${def.id}" data-f="ng">${b.ng||''}</div></td>
+    `;
+    tbody.appendChild(tr);
+  });
+}
+
+/* ── Selected Cuts ── */
+function addCut(data={}) {
+  const {time='', beat='hook', cut='', purpose=''} = data;
+  const tbody = document.getElementById('cutBody');
+  const no = tbody.querySelectorAll('tr').length + 1;
+  const tr = document.createElement('tr');
+  const opts = BEATS.map(b => `<option value="${b.id}"${b.id===beat?' selected':''}>${b.label}</option>`).join('');
+  tr.innerHTML = `
+    <td class="cut-no">${no}</td>
+    <td><input class="cut-time-in" type="text" value="${esc(time)}" placeholder="0〜0"></td>
+    <td><select class="cut-beat-sel">${opts}</select></td>
+    <td><div contenteditable="true" data-placeholder="カットの内容..." style="min-height:22px;">${cut}</div></td>
+    <td><div contenteditable="true" data-placeholder="このカットの目的..." style="min-height:22px;">${purpose}</div></td>
+    <td><button class="cut-del" onclick="removeCut(this)">✕</button></td>
+  `;
+  tbody.appendChild(tr);
+}
+
+function removeCut(btn) {
+  if (document.querySelectorAll('#cutBody tr').length <= 1) return;
+  btn.closest('tr').remove();
+  document.querySelectorAll('#cutBody tr').forEach((tr,i) => {
+    tr.querySelector('.cut-no').textContent = i+1;
+  });
+}
+
+/* ── Collect & Save ── */
+function collectEditor() {
+  const variable = {};
+  VAR_KEYS.forEach(k => {
+    variable[k] = document.getElementById('v_'+k)?.innerHTML || '';
+  });
+
+  const beats = {};
+  BEATS.forEach(def => {
+    const tr = document.querySelector(`tr[data-beat="${def.id}"]`);
+    if (!tr) return;
+    beats[def.id] = {
+      time:        tr.querySelector(`input[data-f="time"]`)?.value || '',
+      variable:    tr.querySelector(`[data-f="variable"]`)?.innerHTML || '',
+      cutBank:     tr.querySelector(`[data-f="cutBank"]`)?.innerHTML || '',
+      selectedCut: tr.querySelector(`[data-f="selectedCut"]`)?.innerHTML || '',
+      audio:       tr.querySelector(`[data-f="audio"]`)?.innerHTML || '',
+      telop:       tr.querySelector(`[data-f="telop"]`)?.innerHTML || '',
+      ng:          tr.querySelector(`[data-f="ng"]`)?.innerHTML || '',
+    };
+  });
+
+  const selectedCuts = [];
+  document.querySelectorAll('#cutBody tr').forEach(tr => {
+    const ces = tr.querySelectorAll('[contenteditable]');
+    selectedCuts.push({
+      time:    tr.querySelector('.cut-time-in')?.value || '',
+      beat:    tr.querySelector('.cut-beat-sel')?.value || 'hook',
+      cut:     ces[0]?.innerHTML || '',
+      purpose: ces[1]?.innerHTML || '',
+    });
+  });
+
+  return {
+    episode: document.getElementById('epNameIn').value,
+    variable, beats, selectedCuts,
+    updatedAt: Date.now()
+  };
+}
+
+async function saveEp() {
+  setSS('SAVING...', 'busy');
+  EPS[CUR] = collectEditor();
+  try {
+    await gPatch({ episodes: EPS });
+    setSS('✓ SAVED', 'ok');
     toast('↑ Gistに保存した');
-  }catch(e){
-    setSyncStatus('SAVE FAILED','error');
-    toast('保存失敗：'+e.message,false);
+  } catch(e) {
+    setSS('FAILED', 'err');
+    toast('保存失敗：'+e.message, false);
   }
 }
 
-function setSyncStatus(msg,cls){
-  const el=document.getElementById('syncStatus');
-  el.textContent=msg;
-  el.className='sync-status'+(cls?' '+cls:'');
-}
+document.addEventListener('keydown', e => {
+  if ((e.metaKey||e.ctrlKey) && e.key==='s') {
+    e.preventDefault();
+    if (document.getElementById('editorView').classList.contains('active')) saveEp();
+  }
+});
 
-// Cmd/Ctrl+S
-document.addEventListener('keydown',e=>{if((e.metaKey||e.ctrlKey)&&e.key==='s'){e.preventDefault();if(document.getElementById('editorView').classList.contains('active'))saveEpisode();}});
-
-/* ═══════════════════ TABLE ROWS ═══════════════════ */
-function esc(s){return String(s).replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
-
-function createRow(data={}){
-  const{cls='gear-hook',gearName='',time='',seqTitle='',seqSub='',visual='',audio='',vector=''}=data;
-  const tr=document.createElement('tr');
-  tr.className=cls;
-  const dots=GEAR_COLORS.map(c=>`<div class="dot${c.cls===cls?' active':''}" style="background:${c.hex}" data-cls="${c.cls}" onclick="changeColor(this)"></div>`).join('');
-  tr.innerHTML=`
-    <td class="gear-cell">
-      <button class="remove-btn" onclick="removeRow(this)">✕</button>
-      <input class="gear-name-input" type="text" value="${esc(gearName)}" placeholder="ギア名" maxlength="10">
-      <input class="gear-time-input" type="text" value="${esc(time)}" placeholder="0:00–0:00" maxlength="16">
-      <div class="color-dots">${dots}</div>
-    </td>
-    <td>
-      <input class="seq-title-input" type="text" value="${esc(seqTitle)}" placeholder="シークエンス名..." maxlength="30">
-      <div contenteditable="true" data-placeholder="（サブテキスト...）" style="font-size:11px;color:var(--muted);margin-top:4px;">${seqSub}</div>
-    </td>
-    <td><div contenteditable="true" data-placeholder="カメラ焦点距離 / 固定位置...&#10;被写体の動作・描写..." style="min-height:72px;">${visual}</div></td>
-    <td><div contenteditable="true" data-placeholder="環境音・効果音の設計...&#10;タイミング指示..." style="min-height:72px;">${audio}</div></td>
-    <td><div class="vector-field"><div contenteditable="true" data-placeholder="このカットが視聴者に植えつける感情..." style="min-height:56px;">${vector}</div></div></td>
-  `;
-  return tr;
-}
-
-function changeColor(dot){
-  const tr=dot.closest('tr');
-  GEAR_COLORS.forEach(c=>tr.classList.remove(c.cls));
-  tr.classList.add(dot.dataset.cls);
-  tr.querySelectorAll('.dot').forEach(d=>d.classList.remove('active'));
-  dot.classList.add('active');
-}
-function addRow(data){document.getElementById('timelineBody').appendChild(createRow(data));}
-function removeRow(btn){
-  if(document.querySelectorAll('#timelineBody tr').length<=1)return;
-  if(confirm('このギアを削除しますか？'))btn.closest('tr').remove();
-}
-
-/* ═══════════════════ INIT ═══════════════════ */
-async function init(){
-  PAT=localStorage.getItem(LS_PAT)||'';
-  GIST_ID=localStorage.getItem(LS_GIST)||'';
-  if(PAT&&GIST_ID){
-    await loadAndShowDash();
-  }else{
+/* ══════ INIT ══════ */
+async function init() {
+  PAT = localStorage.getItem(K_PAT) || '';
+  GID = localStorage.getItem(K_GID) || '';
+  if (PAT && GID) {
+    await loadDash();
+  } else {
     document.getElementById('loader').classList.add('hidden');
-    showView('setupView');
+    view('setupView');
   }
 }
 init();
