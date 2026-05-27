@@ -7,223 +7,306 @@
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=IBM+Plex+Mono:wght@300;400;500;700&family=Noto+Sans+JP:wght@300;400;700&display=swap" rel="stylesheet">
 <style>
 :root{
-  --bg:#080808;--surface:#0f0f0f;--surface2:#131313;--surface3:#181818;
-  --border:#1e1e1e;--border2:#2a2a2a;
-  --teal:#00c2c7;--orange:#e85d00;--amber:#f5a623;--red:#c0392b;
-  --purple:#8b5cf6;--green:#27ae60;--blue:#5b9bd5;
-  --text:#d0d0d0;--muted:#555;--white:#f0f0f0;
+  --bg:#080808;--s:#0f0f0f;--s2:#131313;--s3:#181818;
+  --b:#1e1e1e;--b2:#2a2a2a;
+  --teal:#00c2c7;--orange:#e85d00;--amber:#f5a623;
+  --red:#c0392b;--purple:#8b5cf6;--green:#27ae60;--blue:#5b9bd5;
+  --tx:#d0d0d0;--mu:#555;--wh:#f0f0f0;
 }
 *{margin:0;padding:0;box-sizing:border-box;}
-body{background:var(--bg);color:var(--text);font-family:'IBM Plex Mono',monospace;font-size:13px;line-height:1.6;min-height:100vh;}
-
-/* ── VIEWS ── */
-.view{display:none;padding:40px 32px;}
+body{background:var(--bg);color:var(--tx);font-family:'IBM Plex Mono',monospace;font-size:13px;line-height:1.6;min-height:100vh;}
+.view{display:none;}
 .view.active{display:block;}
 
 /* ── SETUP ── */
-#setupView{max-width:520px;margin:0 auto;padding-top:72px;}
-.setup-logo{font-family:'Bebas Neue',sans-serif;font-size:40px;color:var(--white);line-height:1;letter-spacing:.06em;margin-bottom:4px;}
+#setupView{padding:72px 32px;max-width:520px;margin:0 auto;}
+.setup-logo{font-family:'Bebas Neue',sans-serif;font-size:40px;color:var(--wh);line-height:1;margin-bottom:4px;}
 .setup-logo span{color:var(--teal);}
-.setup-sub{font-size:10px;letter-spacing:.22em;color:var(--muted);margin-bottom:44px;}
-.s-label{font-size:9px;letter-spacing:.28em;color:var(--teal);text-transform:uppercase;margin-bottom:10px;}
-.s-input{width:100%;background:var(--surface);border:1px solid var(--border2);color:var(--white);font-family:'IBM Plex Mono',monospace;font-size:13px;padding:12px 14px;outline:none;transition:border-color .15s;margin-bottom:8px;}
-.s-input:focus{border-color:var(--teal);}
-.s-input::placeholder{color:#2e2e2e;}
-.s-hint{font-size:10px;color:var(--muted);line-height:1.85;}
+.setup-sub{font-size:10px;letter-spacing:.22em;color:var(--mu);margin-bottom:44px;}
+.s-lbl{font-size:9px;letter-spacing:.28em;color:var(--teal);text-transform:uppercase;margin-bottom:10px;display:block;}
+.s-in{width:100%;background:var(--s);border:1px solid var(--b2);color:var(--wh);font-family:'IBM Plex Mono',monospace;font-size:13px;padding:12px 14px;outline:none;margin-bottom:8px;transition:border-color .15s;}
+.s-in:focus{border-color:var(--teal);}
+.s-in::placeholder{color:#2e2e2e;}
+.s-hint{font-size:10px;color:var(--mu);line-height:1.85;}
 .s-hint a{color:var(--teal);text-decoration:none;}
 .s-hint a:hover{text-decoration:underline;}
-.btn-start{margin-top:22px;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.2em;padding:12px 28px;border:1px solid var(--teal);color:var(--teal);background:transparent;cursor:pointer;transition:all .15s;display:block;}
+.btn-start{margin-top:22px;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.2em;padding:12px 28px;border:1px solid var(--teal);color:var(--teal);background:transparent;cursor:pointer;transition:all .15s;}
 .btn-start:hover{background:var(--teal);color:#000;}
 .s-err{font-size:11px;color:var(--red);margin-top:10px;display:none;}
 
 /* ── DASHBOARD ── */
+#dashView{padding:40px 32px;}
 .dash-head{display:flex;align-items:flex-end;justify-content:space-between;border-left:3px solid var(--orange);padding-left:18px;margin-bottom:36px;flex-wrap:wrap;gap:12px;}
-.dash-logo{font-family:'Bebas Neue',sans-serif;font-size:34px;letter-spacing:.06em;color:var(--white);line-height:1;}
+.dash-logo{font-family:'Bebas Neue',sans-serif;font-size:34px;letter-spacing:.06em;color:var(--wh);line-height:1;}
 .dash-logo span{color:var(--teal);}
-.dash-meta{font-size:10px;letter-spacing:.15em;color:var(--muted);margin-top:4px;}
+.dash-meta{font-size:10px;letter-spacing:.15em;color:var(--mu);margin-top:4px;}
 .dash-acts{display:flex;gap:8px;flex-wrap:wrap;}
-.ep-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:1px;background:var(--border);}
-.ep-card{background:var(--surface);padding:18px;cursor:pointer;transition:background .15s;position:relative;border-left:3px solid var(--orange);}
-.ep-card:hover{background:var(--surface2);}
-.ep-card.nc{border-left-color:#1e1e1e;display:flex;align-items:center;justify-content:center;min-height:110px;color:var(--muted);font-size:11px;letter-spacing:.22em;}
+.ep-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:1px;background:var(--b);}
+.ep-card{background:var(--s);padding:18px;cursor:pointer;transition:background .15s;position:relative;border-left:3px solid var(--orange);}
+.ep-card:hover{background:var(--s2);}
+.ep-card.nc{border-left-color:#1e1e1e;display:flex;align-items:center;justify-content:center;min-height:110px;color:var(--mu);font-size:11px;letter-spacing:.22em;}
 .ep-card.nc:hover{border-left-color:var(--teal);color:var(--teal);}
-.ep-card-id{font-size:9px;letter-spacing:.25em;color:var(--muted);margin-bottom:5px;}
-.ep-card-title{font-family:'Bebas Neue',sans-serif;font-size:17px;letter-spacing:.06em;color:var(--white);line-height:1.1;margin-bottom:5px;}
-.ep-card-sub{font-family:'Noto Sans JP',sans-serif;font-size:11px;color:var(--muted);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;line-height:1.6;}
-.ep-card-date{font-size:9px;color:#2a2a2a;margin-top:8px;letter-spacing:.1em;}
-.ep-del-btn{position:absolute;top:10px;right:10px;background:transparent;border:none;color:#252525;cursor:pointer;font-size:13px;transition:color .15s;line-height:1;}
-.ep-del-btn:hover{color:var(--red);}
+.epc-id{font-size:9px;letter-spacing:.25em;color:var(--mu);margin-bottom:5px;}
+.epc-title{font-family:'Bebas Neue',sans-serif;font-size:17px;color:var(--wh);line-height:1.1;margin-bottom:5px;}
+.epc-sub{font-family:'Noto Sans JP',sans-serif;font-size:11px;color:var(--mu);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
+.epc-date{font-size:9px;color:#2a2a2a;margin-top:8px;}
+.ep-del{position:absolute;top:10px;right:10px;background:transparent;border:none;color:#252525;cursor:pointer;font-size:13px;transition:color .15s;}
+.ep-del:hover{color:var(--red);}
 
-/* ── EDITOR TOPBAR ── */
-.ed-topbar{display:flex;align-items:center;gap:10px;border-bottom:1px solid var(--border);padding:10px 32px;background:var(--surface);position:sticky;top:0;z-index:100;flex-wrap:wrap;}
-.back-btn{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.18em;color:var(--muted);background:transparent;border:1px solid var(--border2);padding:6px 12px;cursor:pointer;transition:all .15s;}
-.back-btn:hover{border-color:var(--muted);color:var(--white);}
-.ep-bar-label{font-size:10px;letter-spacing:.15em;color:var(--muted);}
-.ep-bar-title{font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--white);}
-.topbar-r{margin-left:auto;display:flex;gap:8px;align-items:center;}
-.sync-st{font-size:10px;letter-spacing:.12em;color:var(--muted);}
-.sync-st.ok{color:var(--teal);}
-.sync-st.err{color:var(--red);}
-.sync-st.busy{color:var(--amber);}
-
-/* ── BTN ── */
+/* ── BUTTONS ── */
 .btn{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.18em;padding:7px 13px;border:1px solid;cursor:pointer;background:transparent;transition:all .15s;white-space:nowrap;}
 .btn-t{color:var(--teal);border-color:var(--teal);}
 .btn-t:hover{background:var(--teal);color:#000;}
-.btn-g{color:var(--muted);border-color:var(--border2);}
-.btn-g:hover{border-color:var(--muted);color:var(--white);}
-.btn-o{color:var(--orange);border-color:var(--orange);}
-.btn-o:hover{background:var(--orange);color:#000;}
+.btn-g{color:var(--mu);border-color:var(--b2);}
+.btn-g:hover{border-color:var(--mu);color:var(--wh);}
+
+/* ── EDITOR TOPBAR ── */
+.ed-top{display:flex;align-items:center;gap:10px;border-bottom:1px solid var(--b);padding:10px 32px;background:var(--s);position:sticky;top:0;z-index:200;flex-wrap:wrap;}
+.back-btn{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.18em;color:var(--mu);background:transparent;border:1px solid var(--b2);padding:6px 12px;cursor:pointer;transition:all .15s;}
+.back-btn:hover{border-color:var(--mu);color:var(--wh);}
+.ep-bar-lbl{font-size:10px;letter-spacing:.15em;color:var(--mu);}
+.ep-bar-ttl{font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--wh);}
+.top-r{margin-left:auto;display:flex;gap:8px;align-items:center;}
+.ss{font-size:10px;letter-spacing:.12em;color:var(--mu);}
+.ss.ok{color:var(--teal);}
+.ss.err{color:var(--red);}
+.ss.busy{color:var(--amber);}
+
+/* ── TAGLINE (ALWAYS VISIBLE) ── */
+.tagline{background:#060606;border-bottom:1px solid var(--b);padding:9px 32px;font-size:11px;letter-spacing:.12em;color:var(--mu);text-align:center;}
+.tagline strong{color:var(--orange);letter-spacing:.1em;}
 
 /* ── EDITOR BODY ── */
 .ed-body{padding:32px;}
 
-/* Episode header */
-.ep-doc-head{border-left:3px solid var(--orange);padding-left:18px;margin-bottom:36px;}
-.ep-doc-head::before{content:'ANDBODY REEL STORYBOARD PROTOCOL';font-size:9px;letter-spacing:.25em;color:var(--teal);display:block;margin-bottom:8px;}
-.ep-doc-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(26px,4vw,44px);letter-spacing:.06em;color:var(--white);line-height:1;}
-.ep-doc-title span{color:var(--teal);}
-.ep-name-row{display:flex;align-items:center;gap:12px;margin-top:12px;}
-.ep-name-lbl{font-size:10px;letter-spacing:.2em;color:var(--muted);white-space:nowrap;}
-.ep-name-in{background:transparent;border:none;border-bottom:1px solid var(--orange);color:var(--orange);font-family:'IBM Plex Mono',monospace;font-size:13px;font-weight:700;letter-spacing:.08em;padding:4px 0;width:340px;outline:none;}
-.ep-name-in::placeholder{color:#2e2e2e;}
-
-/* Section label */
+/* ── SECTION LABEL ── */
 .sec-lbl{display:flex;align-items:center;gap:12px;margin:36px 0 14px;}
 .sec-tag{font-family:'Bebas Neue',sans-serif;font-size:15px;letter-spacing:.2em;padding:4px 14px 2px;border:1px solid;}
-.sec-tag.v{color:var(--teal);border-color:var(--teal);}
-.sec-tag.s{color:var(--orange);border-color:var(--orange);}
-.sec-tag.c{color:var(--amber);border-color:var(--amber);}
-.sec-desc{font-size:11px;color:var(--muted);letter-spacing:.08em;}
+.sec-tag.guide{color:var(--mu);border-color:var(--mu);}
+.sec-tag.var  {color:var(--teal);border-color:var(--teal);}
+.sec-tag.sb   {color:var(--orange);border-color:var(--orange);}
+.sec-tag.cut  {color:var(--amber);border-color:var(--amber);}
+.sec-tag.chk  {color:var(--green);border-color:var(--green);}
+.sec-desc{font-size:11px;color:var(--mu);letter-spacing:.08em;}
 
-/* ── LAYER 1: EPISODE VARIABLE ── */
-.var-tbl{width:100%;border-collapse:collapse;border:1px solid var(--border);}
-.var-tbl tr{border-bottom:1px solid var(--border);}
+/* ── BOARD GUIDE ── */
+.guide-det{border:1px solid var(--b);margin-bottom:4px;}
+.guide-sum{padding:10px 16px;cursor:pointer;font-size:10px;letter-spacing:.18em;color:var(--mu);list-style:none;display:flex;align-items:center;gap:8px;background:var(--s2);user-select:none;}
+.guide-sum::-webkit-details-marker{display:none;}
+.guide-sum::before{content:'▸';transition:transform .2s;}
+details[open] .guide-sum::before{transform:rotate(90deg);}
+.guide-body{padding:16px;display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:10px;}
+.g-item{border-left:2px solid var(--b2);padding-left:12px;}
+.g-key{font-size:9px;letter-spacing:.22em;color:var(--teal);text-transform:uppercase;margin-bottom:3px;}
+.g-val{font-family:'Noto Sans JP',sans-serif;font-size:12px;color:var(--mu);line-height:1.7;}
+
+/* ── EPISODE VARIABLE ── */
+.var-tbl{width:100%;border-collapse:collapse;border:1px solid var(--b);}
+.var-tbl tr{border-bottom:1px solid var(--b);}
 .var-tbl tr:last-child{border-bottom:none;}
-.var-key{width:190px;padding:11px 16px;background:var(--surface2);font-size:10px;letter-spacing:.18em;color:var(--teal);border-right:1px solid var(--border);white-space:nowrap;vertical-align:middle;}
-.var-val{padding:9px 16px;background:var(--surface);}
-.var-tbl [contenteditable]{outline:none;font-family:'Noto Sans JP',sans-serif;font-size:13px;line-height:1.8;color:var(--white);font-weight:300;min-height:22px;width:100%;display:block;}
-.var-tbl [contenteditable]:empty::before{content:attr(data-placeholder);color:#282828;font-style:italic;pointer-events:none;}
-.var-tbl [contenteditable]:focus{background:rgba(255,255,255,.015);}
+.vk{width:175px;padding:11px 14px;background:var(--s2);font-size:10px;letter-spacing:.18em;color:var(--teal);border-right:1px solid var(--b);white-space:nowrap;vertical-align:middle;}
+.vv{padding:9px 14px;background:var(--s);}
+/* enemy highlight */
+.ve .vk{color:var(--orange);background:rgba(232,93,0,.07);border-right-color:var(--orange);}
+.ve .vv{background:rgba(232,93,0,.05);border-left:3px solid var(--orange);padding-left:11px;}
+/* one-move highlight */
+.vo .vk{color:var(--green);background:rgba(39,174,96,.07);border-right-color:var(--green);}
+.vo .vv{background:rgba(39,174,96,.05);border-left:3px solid var(--green);padding-left:11px;}
+.v-badge{font-size:8px;letter-spacing:.2em;display:block;margin-bottom:2px;opacity:.65;}
 
-/* ── LAYER 2: STORYBOARD ── */
-.sb-wrap{overflow-x:auto;border:1px solid var(--border);}
-.sb-tbl{border-collapse:collapse;width:100%;min-width:1140px;}
-.sb-tbl thead tr{background:#0b0b0b;}
-.sb-tbl thead th{font-family:'IBM Plex Mono',monospace;font-size:9px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);padding:11px 12px;text-align:left;border-bottom:1px solid var(--border);border-right:1px solid var(--border);white-space:nowrap;}
+/* ── CONTENTEDITABLE ── */
+[contenteditable]{outline:none;font-family:'Noto Sans JP',sans-serif;font-size:13px;line-height:1.85;color:var(--wh);font-weight:300;min-height:22px;width:100%;display:block;}
+[contenteditable]:empty::before{content:attr(data-ph);color:#242424;font-style:italic;pointer-events:none;font-size:12px;}
+[contenteditable]:focus{background:rgba(255,255,255,.01);}
+
+/* ── SELECT ── */
+.mat-sel{background:var(--s2);border:1px solid var(--b2);color:var(--tx);font-family:'IBM Plex Mono',monospace;font-size:11px;padding:4px 6px;outline:none;cursor:pointer;width:100%;}
+.mat-sel option{background:var(--s);}
+.beat-sel{background:var(--s);border:1px solid var(--b2);color:var(--tx);font-family:'IBM Plex Mono',monospace;font-size:11px;padding:3px 6px;outline:none;cursor:pointer;}
+.beat-sel option{background:var(--s);}
+
+/* ── DESKTOP STORYBOARD ── */
+.sb-wrap{overflow-x:auto;border:1px solid var(--b);}
+.sb-tbl{border-collapse:collapse;min-width:2100px;width:100%;}
+.sb-tbl thead tr{background:#090909;}
+.sb-tbl thead th{font-family:'IBM Plex Mono',monospace;font-size:9px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--mu);padding:10px 10px;text-align:left;border-bottom:1px solid var(--b);border-right:1px solid var(--b);white-space:nowrap;vertical-align:top;}
+.sb-tbl thead th .th-s{display:block;font-size:8px;font-weight:300;color:#2a2a2a;letter-spacing:.08em;margin-top:2px;}
 .sb-tbl thead th:last-child{border-right:none;}
-.sb-tbl thead th .sub{display:block;font-size:8px;font-weight:300;letter-spacing:.1em;color:#333;margin-top:2px;}
-.sb-tbl tbody tr{border-bottom:1px solid var(--border);}
-.sb-tbl tbody td{padding:11px 12px;vertical-align:top;border-right:1px solid var(--border);}
+.sb-tbl tbody tr{border-bottom:1px solid var(--b);}
+.sb-tbl tbody td{padding:10px 10px;vertical-align:top;border-right:1px solid var(--b);}
 .sb-tbl tbody td:last-child{border-right:none;}
+.sb-tbl [contenteditable]{font-size:12px;min-height:30px;}
+/* beat cell */
+.bc{text-align:center;min-width:82px;}
+.bl{font-family:'Bebas Neue',sans-serif;font-size:18px;letter-spacing:.1em;display:block;line-height:1;}
+.bt-in{background:transparent;border:none;border-bottom:1px dashed #222;outline:none;width:70px;font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--mu);text-align:center;padding:2px 0;margin-top:4px;display:block;margin-left:auto;margin-right:auto;}
+.bt-in::placeholder{color:#222;}
+/* role cell */
+.rc{background:#090909;min-width:148px;max-width:148px;}
+.rf{font-family:'Noto Sans JP',sans-serif;font-size:11px;color:#2e2e2e;line-height:1.7;}
+/* cb sections */
+.cbs{margin-bottom:7px;}
+.cbl{font-size:9px;letter-spacing:.2em;display:block;margin-bottom:2px;}
+.cbs-a .cbl{color:var(--orange);}
+.cbs-b .cbl{color:var(--teal);}
+.cbs-c .cbl{color:var(--purple);}
+.cbs-d .cbl{color:var(--amber);}
+.cbs-e .cbl{color:var(--mu);}
+.cbs [contenteditable]{color:#6a6aaa;font-size:11px;min-height:36px;white-space:pre-wrap;}
+/* par sections */
+.pars{margin-bottom:5px;}
+.parl{font-size:9px;letter-spacing:.2em;color:var(--mu);display:block;margin-bottom:2px;}
+/* beat row accent colors */
+tr[data-beat=hook] td:first-child{border-left:3px solid var(--orange);}
+tr[data-beat=obs]  td:first-child{border-left:3px solid var(--teal);}
+tr[data-beat=fri]  td:first-child{border-left:3px solid var(--red);}
+tr[data-beat=sti]  td:first-child{border-left:3px solid var(--blue);}
+tr[data-beat=str]  td:first-child{border-left:3px solid var(--purple);}
+tr[data-beat=one]  td:first-child{border-left:3px solid var(--green);}
+tr[data-beat=nam]  td:first-child{border-left:3px solid var(--amber);}
+tr[data-beat=hook] .bl{color:var(--orange);}
+tr[data-beat=obs]  .bl{color:var(--teal);}
+tr[data-beat=fri]  .bl{color:var(--red);}
+tr[data-beat=sti]  .bl{color:var(--blue);}
+tr[data-beat=str]  .bl{color:var(--purple);}
+tr[data-beat=one]  .bl{color:var(--green);}
+tr[data-beat=nam]  .bl{color:var(--amber);}
 
-/* Beat label */
-.beat-cell{min-width:80px;text-align:center;}
-.beat-lbl{font-family:'Bebas Neue',sans-serif;font-size:19px;letter-spacing:.1em;line-height:1;display:block;}
-.beat-time{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.1em;color:var(--muted);background:transparent;border:none;border-bottom:1px dashed #252525;outline:none;width:70px;text-align:center;padding:2px 0;margin-top:5px;display:block;margin-left:auto;margin-right:auto;}
-.beat-time::placeholder{color:#222;}
-.beat-time:focus{border-bottom-color:#444;}
+/* ── MOBILE BEAT CARDS ── */
+.mobile-sb{display:none;}
+.beat-card{border:1px solid var(--b);margin-bottom:8px;}
+.beat-card[data-beat=hook]{border-left:3px solid var(--orange);}
+.beat-card[data-beat=obs] {border-left:3px solid var(--teal);}
+.beat-card[data-beat=fri] {border-left:3px solid var(--red);}
+.beat-card[data-beat=sti] {border-left:3px solid var(--blue);}
+.beat-card[data-beat=str] {border-left:3px solid var(--purple);}
+.beat-card[data-beat=one] {border-left:3px solid var(--green);}
+.beat-card[data-beat=nam] {border-left:3px solid var(--amber);}
+.bch{display:flex;align-items:center;gap:12px;padding:12px 16px;background:var(--s2);border-bottom:1px solid var(--b);}
+.bch-lbl{font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:.1em;line-height:1;}
+.beat-card[data-beat=hook] .bch-lbl{color:var(--orange);}
+.beat-card[data-beat=obs]  .bch-lbl{color:var(--teal);}
+.beat-card[data-beat=fri]  .bch-lbl{color:var(--red);}
+.beat-card[data-beat=sti]  .bch-lbl{color:var(--blue);}
+.beat-card[data-beat=str]  .bch-lbl{color:var(--purple);}
+.beat-card[data-beat=one]  .bch-lbl{color:var(--green);}
+.beat-card[data-beat=nam]  .bch-lbl{color:var(--amber);}
+.bch-t{background:transparent;border:none;border-bottom:1px dashed #333;outline:none;font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--mu);padding:2px 0;width:80px;}
+.bch-t::placeholder{color:#2a2a2a;}
+.bc-always{padding:12px 16px;border-bottom:1px solid var(--b);}
+.bc-f{margin-bottom:10px;}
+.bc-f:last-child{margin-bottom:0;}
+.bc-fl{font-size:9px;letter-spacing:.22em;color:var(--mu);text-transform:uppercase;margin-bottom:3px;display:block;}
+.bc-f [contenteditable]{font-size:12px;min-height:22px;}
+/* accordion */
+.acc-det{border-top:1px solid var(--b);}
+.acc-sum{padding:10px 16px;cursor:pointer;font-size:10px;letter-spacing:.18em;color:var(--mu);list-style:none;display:flex;align-items:center;gap:8px;user-select:none;}
+.acc-sum::-webkit-details-marker{display:none;}
+.acc-sum::before{content:'▸';transition:transform .2s;}
+.acc-det[open] .acc-sum::before{transform:rotate(90deg);}
+.acc-body{padding:12px 16px;border-top:1px solid var(--b);background:var(--s2);}
+.acc-f{margin-bottom:10px;}
+.acc-f:last-child{margin-bottom:0;}
+.acc-fl{font-size:9px;letter-spacing:.2em;color:var(--mu);text-transform:uppercase;margin-bottom:3px;display:block;}
+.acc-f [contenteditable]{font-size:12px;min-height:22px;}
 
-/* Fixed role */
-.role-cell{min-width:155px;background:#090909;}
-.role-txt{font-family:'Noto Sans JP',sans-serif;font-size:11px;color:#333;line-height:1.75;}
-
-/* Editable cells */
-.sb-tbl [contenteditable]{outline:none;font-family:'Noto Sans JP',sans-serif;font-size:12px;line-height:1.75;color:var(--text);min-height:36px;display:block;}
-.sb-tbl [contenteditable]:empty::before{content:attr(data-placeholder);color:#252525;font-style:italic;pointer-events:none;font-size:11px;}
-.sb-tbl [contenteditable]:focus{background:rgba(255,255,255,.012);}
-.cb-cell [contenteditable]{color:#7777aa;min-height:56px;}
-.sel-cell [contenteditable]{color:var(--white);}
-.ng-cell [contenteditable]{color:#5a3333;}
-
-/* Beat row accent */
-tr[data-beat="hook"]        td:first-child{border-left:3px solid var(--orange);}
-tr[data-beat="observation"] td:first-child{border-left:3px solid var(--teal);}
-tr[data-beat="friction"]    td:first-child{border-left:3px solid var(--red);}
-tr[data-beat="stillness"]   td:first-child{border-left:3px solid var(--blue);}
-tr[data-beat="strategist"]  td:first-child{border-left:3px solid var(--purple);}
-tr[data-beat="oneMove"]     td:first-child{border-left:3px solid var(--green);}
-tr[data-beat="naming"]      td:first-child{border-left:3px solid var(--amber);}
-
-tr[data-beat="hook"]        .beat-lbl{color:var(--orange);}
-tr[data-beat="observation"] .beat-lbl{color:var(--teal);}
-tr[data-beat="friction"]    .beat-lbl{color:var(--red);}
-tr[data-beat="stillness"]   .beat-lbl{color:var(--blue);}
-tr[data-beat="strategist"]  .beat-lbl{color:var(--purple);}
-tr[data-beat="oneMove"]     .beat-lbl{color:var(--green);}
-tr[data-beat="naming"]      .beat-lbl{color:var(--amber);}
-
-/* ── LAYER 3: SELECTED CUTS ── */
-.cut-wrap{overflow-x:auto;border:1px solid var(--border);}
-.cut-tbl{border-collapse:collapse;width:100%;min-width:680px;}
-.cut-tbl thead tr{background:#0b0b0b;}
-.cut-tbl thead th{font-family:'IBM Plex Mono',monospace;font-size:9px;font-weight:700;letter-spacing:.22em;color:var(--muted);padding:11px 12px;text-align:left;border-bottom:1px solid var(--border);border-right:1px solid var(--border);white-space:nowrap;}
+/* ── DESKTOP SELECTED CUTS ── */
+.cut-wrap{overflow-x:auto;border:1px solid var(--b);}
+.cut-tbl{border-collapse:collapse;width:100%;min-width:1200px;}
+.cut-tbl thead tr{background:#090909;}
+.cut-tbl thead th{font-family:'IBM Plex Mono',monospace;font-size:9px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--mu);padding:10px 10px;text-align:left;border-bottom:1px solid var(--b);border-right:1px solid var(--b);white-space:nowrap;}
 .cut-tbl thead th:last-child{border-right:none;}
-.cut-tbl tbody tr{border-bottom:1px solid var(--border);}
-.cut-tbl tbody td{padding:10px 12px;vertical-align:middle;border-right:1px solid var(--border);}
+.cut-tbl tbody tr{border-bottom:1px solid var(--b);}
+.cut-tbl tbody td{padding:10px 10px;vertical-align:top;border-right:1px solid var(--b);}
 .cut-tbl tbody td:last-child{border-right:none;}
-.cut-no{font-family:'Bebas Neue',sans-serif;font-size:18px;color:var(--muted);text-align:center;width:40px;}
-.cut-time-in{background:transparent;border:none;border-bottom:1px solid #222;outline:none;color:var(--text);font-family:'IBM Plex Mono',monospace;font-size:12px;width:80px;padding:2px 0;letter-spacing:.08em;}
-.cut-time-in::placeholder{color:#242424;}
-.cut-beat-sel{background:var(--surface);border:1px solid var(--border2);color:var(--text);font-family:'IBM Plex Mono',monospace;font-size:11px;padding:4px 8px;outline:none;cursor:pointer;}
-.cut-tbl [contenteditable]{outline:none;font-family:'Noto Sans JP',sans-serif;font-size:12px;color:var(--text);min-height:20px;line-height:1.7;display:block;}
-.cut-tbl [contenteditable]:empty::before{content:attr(data-placeholder);color:#242424;font-style:italic;pointer-events:none;font-size:11px;}
-.cut-del{background:transparent;border:none;color:#252525;cursor:pointer;font-size:13px;transition:color .15s;padding:2px 4px;line-height:1;}
-.cut-del:hover{color:var(--red);}
-.add-cut-btn{width:100%;background:transparent;border:1px dashed #1e1e1e;color:var(--muted);font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.2em;padding:12px;cursor:pointer;transition:all .15s;margin-top:1px;}
-.add-cut-btn:hover{border-color:var(--amber);color:var(--amber);}
+.cut-tbl [contenteditable]{font-size:12px;min-height:22px;}
+.cn{font-family:'Bebas Neue',sans-serif;font-size:18px;color:var(--mu);text-align:center;width:34px;}
+.ct-in{background:transparent;border:none;border-bottom:1px solid #222;outline:none;color:var(--tx);font-family:'IBM Plex Mono',monospace;font-size:12px;width:68px;padding:2px 0;}
+.ct-in::placeholder{color:#222;}
+.c-del{background:transparent;border:none;color:#252525;cursor:pointer;font-size:13px;transition:color .15s;padding:2px 4px;line-height:1;}
+.c-del:hover{color:var(--red);}
+.add-cut{width:100%;background:transparent;border:1px dashed #1e1e1e;color:var(--mu);font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.2em;padding:12px;cursor:pointer;transition:all .15s;margin-top:1px;}
+.add-cut:hover{border-color:var(--amber);color:var(--amber);}
+
+/* ── MOBILE SELECTED CUTS ── */
+.mobile-cuts{display:none;}
+.cut-card{border:1px solid var(--b);border-left:3px solid var(--b2);margin-bottom:8px;}
+.cut-card-h{display:flex;align-items:center;gap:10px;padding:10px 14px;background:var(--s2);flex-wrap:wrap;}
+.cc-no{font-family:'Bebas Neue',sans-serif;font-size:22px;color:var(--mu);}
+.cc-t{background:transparent;border:none;border-bottom:1px dashed #333;outline:none;font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--mu);padding:2px 0;width:68px;}
+.cc-t::placeholder{color:#2a2a2a;}
+.cc-mat{margin-left:auto;}
+.cut-card-b{padding:10px 14px;}
+.cc-del{width:100%;background:transparent;border:1px dashed #1a1a1a;color:#2a2a2a;font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.15em;padding:8px;cursor:pointer;margin-top:8px;transition:all .15s;}
+.cc-del:hover{border-color:var(--red);color:var(--red);}
+.add-cut-m{width:100%;background:transparent;border:1px dashed #1e1e1e;color:var(--mu);font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.2em;padding:12px;cursor:pointer;transition:all .15s;margin-top:1px;}
+.add-cut-m:hover{border-color:var(--amber);color:var(--amber);}
+
+/* ── CHECKLISTS ── */
+.chk-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;}
+.chk-sec{border:1px solid var(--b);padding:20px;}
+.chk-ttl{font-family:'Bebas Neue',sans-serif;font-size:16px;letter-spacing:.15em;margin-bottom:16px;}
+.chk-ttl.pre{color:var(--orange);}
+.chk-ttl.post{color:var(--green);}
+.chk-item{display:flex;align-items:flex-start;gap:10px;margin-bottom:10px;cursor:pointer;}
+.chk-item:last-child{margin-bottom:0;}
+.chk-cb{width:16px;height:16px;border:1px solid var(--b2);background:transparent;flex-shrink:0;margin-top:2px;cursor:pointer;appearance:none;outline:none;transition:all .15s;}
+.chk-cb:checked{background:var(--teal);border-color:var(--teal);}
+.chk-cb:checked+.chk-tx{color:var(--mu);text-decoration:line-through;}
+.chk-tx{font-family:'Noto Sans JP',sans-serif;font-size:12px;color:var(--tx);line-height:1.6;transition:color .15s;}
 
 /* ── FOOTER ── */
-.doc-footer{margin-top:40px;padding-top:20px;border-top:1px solid var(--border);font-size:10px;color:var(--muted);display:flex;justify-content:space-between;letter-spacing:.12em;flex-wrap:wrap;gap:8px;}
+.doc-footer{margin-top:40px;padding-top:20px;border-top:1px solid var(--b);font-size:10px;color:var(--mu);display:flex;justify-content:space-between;letter-spacing:.12em;flex-wrap:wrap;gap:8px;}
 
 /* ── LOADER / TOAST ── */
 .loader{position:fixed;inset:0;background:var(--bg);display:flex;align-items:center;justify-content:center;z-index:9999;transition:opacity .3s;}
 .loader.hidden{opacity:0;pointer-events:none;}
-.loader-txt{font-family:'Bebas Neue',sans-serif;font-size:16px;letter-spacing:.28em;color:var(--muted);}
-.toast{position:fixed;bottom:24px;right:24px;background:var(--surface2);border:1px solid var(--teal);color:var(--teal);font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.12em;padding:12px 20px;opacity:0;transform:translateY(8px);transition:all .25s;pointer-events:none;z-index:9998;}
+.loader-tx{font-family:'Bebas Neue',sans-serif;font-size:16px;letter-spacing:.28em;color:var(--mu);}
+.toast{position:fixed;bottom:24px;right:24px;background:var(--s2);border:1px solid var(--teal);color:var(--teal);font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.12em;padding:12px 20px;opacity:0;transform:translateY(8px);transition:all .25s;pointer-events:none;z-index:9998;}
 .toast.show{opacity:1;transform:translateY(0);}
 
 /* ── RESPONSIVE ── */
-@media(max-width:640px){
-  .view{padding:20px 16px;}
-  .ed-body{padding:20px 16px;}
-  .ed-topbar{padding:8px 16px;}
-  .ep-name-in{width:190px;}
+@media(max-width:767px){
+  #setupView{padding:40px 16px;}
+  #dashView{padding:20px 16px;}
+  .ed-top{padding:8px 16px;}
+  .tagline{padding:8px 16px;font-size:10px;}
+  .ed-body{padding:16px;}
+  .desktop-sb{display:none;}
+  .mobile-sb{display:block;}
+  .desktop-cuts{display:none;}
+  .mobile-cuts{display:block;}
+  .add-cut{display:none;}
+  .chk-grid{grid-template-columns:1fr;}
+  .vk{width:120px;font-size:9px;padding:10px 10px;}
 }
 @media print{
-  .ed-topbar,.add-cut-btn,.ep-del-btn,.cut-del,.back-btn,.dash-acts,.btn{display:none!important;}
+  .ed-top,.tagline,.add-cut,.add-cut-m,.c-del,.cc-del,.ep-del,.btn,.mobile-sb,.mobile-cuts{display:none!important;}
   body{background:#fff;color:#111;}
-  :root{--bg:#fff;--surface:#f9f9f9;--surface2:#f0f0f0;--border:#ddd;--teal:#007a7e;--orange:#b84500;--amber:#b07800;--red:#a00;--purple:#555;--green:#1a6e37;--blue:#2a5a8a;--text:#222;--white:#000;--muted:#666;}
-  .role-txt{color:#888;}
-  .cb-cell [contenteditable]{color:#444;}
-  .ng-cell [contenteditable]{color:#a05050;}
+  :root{--bg:#fff;--s:#f9f9f9;--s2:#f0f0f0;--b:#ddd;--teal:#007a7e;--orange:#b84500;--amber:#b07800;--tx:#222;--wh:#000;--mu:#666;}
 }
 </style>
 </head>
 <body>
 
-<div class="loader" id="loader"><span class="loader-txt">LOADING...</span></div>
+<div class="loader" id="loader"><span class="loader-tx">LOADING...</span></div>
 
-<!-- ══════════════════════════════════════
-     SETUP
-══════════════════════════════════════ -->
+<!-- SETUP -->
 <div class="view" id="setupView">
   <div class="setup-logo">ANDBODY <span>OS</span></div>
   <div class="setup-sub">STORYBOARD PROTOCOL — FIRST SETUP</div>
-  <div class="s-label">GITHUB PERSONAL ACCESS TOKEN</div>
-  <input class="s-input" type="password" id="patInput" placeholder="ghp_xxxxxxxxxxxxxxxxxxxx">
+  <span class="s-lbl">GITHUB PERSONAL ACCESS TOKEN</span>
+  <input class="s-in" type="password" id="patInput" placeholder="ghp_xxxxxxxxxxxxxxxxxxxx">
   <div class="s-hint">
     取得：<a href="https://github.com/settings/tokens/new" target="_blank">github.com/settings/tokens/new</a><br>
-    Note: <strong style="color:var(--white)">storyboard</strong> 　Expiration: <strong style="color:var(--white)">No expiration</strong><br>
+    Note: <strong style="color:var(--wh)">storyboard</strong> &nbsp; Expiration: <strong style="color:var(--wh)">No expiration</strong><br>
     Scopes: <strong style="color:var(--teal)">gist</strong> にチェック → Generate → コピー
   </div>
   <button class="btn-start" onclick="doSetup()">▸ 接続して始める</button>
   <div class="s-err" id="sErr"></div>
 </div>
 
-<!-- ══════════════════════════════════════
-     DASHBOARD
-══════════════════════════════════════ -->
+<!-- DASHBOARD -->
 <div class="view" id="dashView">
   <div class="dash-head">
     <div>
@@ -239,121 +322,128 @@ tr[data-beat="naming"]      .beat-lbl{color:var(--amber);}
   <div class="ep-grid" id="epGrid"></div>
 </div>
 
-<!-- ══════════════════════════════════════
-     EDITOR
-══════════════════════════════════════ -->
+<!-- EDITOR -->
 <div class="view" id="editorView">
-  <div class="ed-topbar">
+  <div class="ed-top">
     <button class="back-btn" onclick="backToDash()">← LIBRARY</button>
-    <span class="ep-bar-label">EPISODE /</span>
-    <span class="ep-bar-title" id="epBarTitle">—</span>
-    <div class="topbar-r">
-      <span class="sync-st" id="syncSt">—</span>
+    <span class="ep-bar-lbl">EPISODE /</span>
+    <span class="ep-bar-ttl" id="epBarTtl">—</span>
+    <div class="top-r">
+      <span class="ss" id="ss">—</span>
       <button class="btn btn-t" onclick="saveEp()">↑ SAVE</button>
       <button class="btn btn-g" onclick="window.print()">⊞ PRINT</button>
     </div>
   </div>
 
+  <div class="tagline">
+    <strong>1行＝1カットではない。</strong>&nbsp;1行＝視聴者心理を変えるBEAT。固定するのはBEATだけ。変えるのは、問い・敵・一手・感情・映像モチーフ。
+  </div>
+
   <div class="ed-body">
 
     <!-- Episode header -->
-    <div class="ep-doc-head">
-      <div class="ep-doc-title">ANDBODY <span>OS</span><br>Storyboard Protocol</div>
-      <div class="ep-name-row">
-        <span class="ep-name-lbl">EPISODE :</span>
-        <input class="ep-name-in" id="epNameIn" type="text" placeholder="エピソードタイトル..." maxlength="60"
-          oninput="document.getElementById('epBarTitle').textContent=this.value||'—'">
+    <div style="border-left:3px solid var(--orange);padding-left:18px;margin-bottom:32px;">
+      <div style="font-size:9px;letter-spacing:.25em;color:var(--teal);margin-bottom:8px;">ANDBODY REEL STORYBOARD PROTOCOL</div>
+      <div style="font-family:'Bebas Neue',sans-serif;font-size:clamp(24px,4vw,44px);color:var(--wh);letter-spacing:.06em;line-height:1;">ANDBODY <span style="color:var(--teal)">OS</span><br>Storyboard Protocol</div>
+      <div style="display:flex;align-items:center;gap:12px;margin-top:12px;flex-wrap:wrap;">
+        <span style="font-size:10px;letter-spacing:.2em;color:var(--mu);white-space:nowrap;">EPISODE :</span>
+        <input id="epNameIn" type="text" placeholder="エピソードタイトル..." maxlength="60"
+          style="background:transparent;border:none;border-bottom:1px solid var(--orange);color:var(--orange);font-family:'IBM Plex Mono',monospace;font-size:13px;font-weight:700;padding:4px 0;width:320px;max-width:100%;outline:none;"
+          oninput="document.getElementById('epBarTtl').textContent=this.value||'—';if(ep)ep.episode=this.value;">
       </div>
     </div>
 
-    <!-- ─ LAYER 1: EPISODE VARIABLE ─ -->
+    <!-- BOARD GUIDE -->
     <div class="sec-lbl">
-      <div class="sec-tag v">EPISODE VARIABLE</div>
+      <div class="sec-tag guide">BOARD GUIDE</div>
+      <div class="sec-desc">用語・判断ルール</div>
+    </div>
+    <details class="guide-det">
+      <summary class="guide-sum">用語と判断ルールを開く</summary>
+      <div class="guide-body" id="guideBody"></div>
+    </details>
+
+    <!-- EPISODE VARIABLE -->
+    <div class="sec-lbl">
+      <div class="sec-tag var">EPISODE VARIABLE</div>
       <div class="sec-desc">毎回変える9項目 — ここが変わらなければ毎回同じ映像になる</div>
     </div>
-    <table class="var-tbl">
-      <tr>
-        <td class="var-key">今回のテーマ</td>
-        <td class="var-val"><div contenteditable="true" id="v_theme" data-placeholder="アンチエイジング／メンタル／食事／筋トレ／AI活用 など"></div></td>
-      </tr>
-      <tr>
-        <td class="var-key">今回の問い</td>
-        <td class="var-val"><div contenteditable="true" id="v_question" data-placeholder="視聴者に刺す問い（一文で）"></div></td>
-      </tr>
-      <tr>
-        <td class="var-key">今回の敵</td>
-        <td class="var-val"><div contenteditable="true" id="v_enemy" data-placeholder="最後に命名する敵（命名BEATで使う）"></div></td>
-      </tr>
-      <tr>
-        <td class="var-key">今回の一手</td>
-        <td class="var-val"><div contenteditable="true" id="v_oneMove" data-placeholder="AIが出す最小行動（小さくていい）"></div></td>
-      </tr>
-      <tr>
-        <td class="var-key">今回の主感情</td>
-        <td class="var-val"><div contenteditable="true" id="v_emotion" data-placeholder="疲労／虚無／焦り／罪悪感／孤独／怒り／希望"></div></td>
-      </tr>
-      <tr>
-        <td class="var-key">今回の映像モチーフ</td>
-        <td class="var-val"><div contenteditable="true" id="v_visual" data-placeholder="水／鉄／火花／夜道／手／背中／光／食事／ログ"></div></td>
-      </tr>
-      <tr>
-        <td class="var-key">今回の音モチーフ</td>
-        <td class="var-val"><div contenteditable="true" id="v_audio" data-placeholder="エンジン音／水音／鉄音／打鍵音／無音／呼吸"></div></td>
-      </tr>
-      <tr>
-        <td class="var-key">今回の色・光</td>
-        <td class="var-val"><div contenteditable="true" id="v_light" data-placeholder="青白いPC光／溶接光／暖色の食事光／暗いジム光"></div></td>
-      </tr>
-      <tr>
-        <td class="var-key">今回見せないもの</td>
-        <td class="var-val"><div contenteditable="true" id="v_dontShow" data-placeholder="自己啓発臭／説明／成果自慢／AI画面の長見せ"></div></td>
-      </tr>
-    </table>
+    <table class="var-tbl" id="varTbl"></table>
 
-    <!-- ─ LAYER 2: STORYBOARD ─ -->
+    <!-- STORYBOARD -->
     <div class="sec-lbl">
-      <div class="sec-tag s">STORYBOARD</div>
-      <div class="sec-desc">BEATは7本固定 — 毎回変えるのは変数・CUT BANK・選抜・音・テロップ・NG</div>
+      <div class="sec-tag sb">STORYBOARD</div>
+      <div class="sec-desc">BEAT固定 · カット数可変 · 毎回変えるのは変数・CUT BANK・選抜・音・テロップ</div>
     </div>
-    <div class="sb-wrap">
+
+    <!-- Desktop table -->
+    <div class="sb-wrap desktop-sb">
       <table class="sb-tbl">
         <thead>
           <tr>
-            <th style="min-width:80px">BEAT<br><span class="sub">/ 時間目安</span></th>
-            <th style="min-width:155px">固定の役割<br><span class="sub">毎回変わらない</span></th>
-            <th style="min-width:140px">今回の変数<br><span class="sub">毎回変える</span></th>
-            <th style="min-width:175px">CUT BANK<br><span class="sub">複数候補を列挙</span></th>
-            <th style="min-width:150px">選抜カット<br><span class="sub">実際に使う</span></th>
-            <th style="min-width:140px">音響設計</th>
-            <th style="min-width:145px">テロップ候補</th>
-            <th style="min-width:125px">NG / 削るもの</th>
+            <th style="min-width:82px">BEAT<br><span class="th-s">/ 時間目安</span></th>
+            <th style="min-width:148px">裏の役割<br><span class="th-s">固定・変わらない</span></th>
+            <th style="min-width:148px">今回の変数<br><span class="th-s">毎回変える</span></th>
+            <th style="min-width:148px">今回の問い<br><span class="th-s">視聴者に刺す</span></th>
+            <th style="min-width:138px">視聴者心理<br><span class="th-s">「〜と思わせる」</span></th>
+            <th style="min-width:128px">起こす感情</th>
+            <th style="min-width:138px">提供する価値</th>
+            <th style="min-width:190px">CUT BANK<br><span class="th-s">A必須 B状況 C感情 D橋 E予備</span></th>
+            <th style="min-width:145px">選抜カット<br><span class="th-s">実際に使う</span></th>
+            <th style="min-width:125px">音響設計</th>
+            <th style="min-width:125px">テロップ候補</th>
+            <th style="min-width:165px">準備・実行・余韻</th>
+            <th style="min-width:138px">敵の命名<br><span class="th-s">への接続</span></th>
+            <th style="min-width:118px">NG／削るもの</th>
+            <th style="min-width:105px">素材状態</th>
           </tr>
         </thead>
         <tbody id="sbBody"></tbody>
       </table>
     </div>
 
-    <!-- ─ LAYER 3: SELECTED CUTS ─ -->
+    <!-- Mobile beat cards -->
+    <div class="mobile-sb" id="mobileSb"></div>
+
+    <!-- SELECTED CUTS -->
     <div class="sec-lbl">
-      <div class="sec-tag c">選抜カット表</div>
-      <div class="sec-desc">実撮影用 — 秒数ベース・順番どおりに並べる</div>
+      <div class="sec-tag cut">選抜カット表</div>
+      <div class="sec-desc">実撮影用 — 10列 · 素材状態管理</div>
     </div>
-    <div class="cut-wrap">
+    <div class="cut-wrap desktop-cuts">
       <table class="cut-tbl">
         <thead>
           <tr>
-            <th style="width:40px">No.</th>
-            <th style="width:88px">秒数</th>
-            <th style="width:96px">BEAT</th>
-            <th>カット</th>
-            <th style="min-width:155px">目的</th>
-            <th style="width:34px"></th>
+            <th style="width:34px">No.</th>
+            <th style="width:90px">BEAT</th>
+            <th style="width:76px">秒数</th>
+            <th style="min-width:155px">選抜カット</th>
+            <th style="min-width:130px">目的</th>
+            <th style="min-width:130px">撮り方</th>
+            <th style="min-width:115px">音</th>
+            <th style="min-width:115px">テロップ</th>
+            <th style="width:108px">素材状態</th>
+            <th style="min-width:115px">メモ</th>
+            <th style="width:28px"></th>
           </tr>
         </thead>
         <tbody id="cutBody"></tbody>
       </table>
     </div>
-    <button class="add-cut-btn" onclick="addCut()">+ カットを追加</button>
+    <button class="add-cut desktop-cuts" onclick="addCut()">+ カットを追加</button>
+
+    <div class="mobile-cuts" id="mobileCuts"></div>
+    <button class="add-cut-m mobile-cuts" onclick="addCut()">+ カットを追加</button>
+
+    <!-- CHECKLISTS -->
+    <div class="sec-lbl" style="margin-top:44px;">
+      <div class="sec-tag chk">CHECKLIST</div>
+      <div class="sec-desc">撮影前・編集後の判断軸</div>
+    </div>
+    <div class="chk-grid">
+      <div class="chk-sec"><div class="chk-ttl pre">撮影前チェック</div><div id="chkPre"></div></div>
+      <div class="chk-sec"><div class="chk-ttl post">編集後チェック</div><div id="chkPost"></div></div>
+    </div>
 
     <div class="doc-footer">
       <div>ANDBODY OS // STORYBOARD PROTOCOL</div>
@@ -365,357 +455,701 @@ tr[data-beat="naming"]      .beat-lbl{color:var(--amber);}
 <div class="toast" id="toast"></div>
 
 <script>
-/* ══════ BEAT DEFINITIONS ══════ */
-const BEATS = [
-  {
-    id: 'hook', label: 'HOOK',
-    role: '違和感で止める。「この男は何者だ？」と思わせる。顔は出さない。断片と音だけで強制停止させる。'
-  },
-  {
-    id: 'observation', label: '観測',
-    role: '朝、自分の状態を読む。「俺も感覚だけで一日を始めている」と思わせる。Oura・水・nao-os入力。'
-  },
-  {
-    id: 'friction', label: '摩耗',
-    role: '通勤・溶接・帰路で削られる証拠を見せる。「本当に働いて削られている」と思わせる。'
-  },
-  {
-    id: 'stillness', label: '静止',
-    role: '帰宅後、動けず止まる。「俺もここで負けている」と思わせる。第二フック。2秒無音。'
-  },
-  {
-    id: 'strategist', label: '参謀',
-    role: 'AIを開き、疲労した自分を再判断する。AIは冷たい参謀。画面は長く見せない。冷光・手元・決定文だけで表現する。'
-  },
-  {
-    id: 'oneMove', label: '一手',
-    role: 'AIが出した最小行動を一つ実行する。1杯・1セット・1行・5分。「これなら自分にもできる」と思わせる。'
-  },
-  {
-    id: 'naming', label: '命名',
-    role: '最後に敵を定義する。「敵は〇〇だ」と言い切る。黒画面。テロップのみ。説明しない。'
-  },
+/* ═══ CONSTANTS ═══ */
+const BEATS=[
+  {id:'hook',label:'HOOK',
+   role:'違和感で止める。視聴者に「この男は何者だ？」と思わせる。顔は出さない。断片と音だけで強制停止させる。'},
+  {id:'obs', label:'観測',
+   role:'朝、自分の状態を読む。視聴者に「俺も感覚だけで一日を始めている」と思わせる。Oura・水・nao-os入力。'},
+  {id:'fri', label:'摩耗',
+   role:'通勤・溶接・帰路で削られる証拠を見せる。視聴者に「本当に働いて削られている」と思わせる。'},
+  {id:'sti', label:'静止',
+   role:'帰宅後、動けず止まる。視聴者に「俺もここで負けている」と思わせる。第二フック。2秒無音。'},
+  {id:'str', label:'参謀',
+   role:'AIを開き、疲労した自分を再判断する。AIは冷たい参謀。画面は長く見せない。冷光・手元・決定文のみ。'},
+  {id:'one', label:'一手',
+   role:'AIが出した最小行動を一つ実行する。1杯・1セット・1行・5分。「これなら自分にもできる」と思わせる。'},
+  {id:'nam', label:'命名',
+   role:'最後に敵を定義する。「敵は〇〇だ」と言い切る。黒画面。テロップのみ。説明しない。'},
 ];
 
-/* ══════ STATE ══════ */
-let PAT = '', GID = '', EPS = {}, CUR = null;
-const K_PAT = 'abd_pat', K_GID = 'abd_gid';
+const MAT=[
+  {v:'notShot',l:'未撮影'},
+  {v:'shot',   l:'撮影済み'},
+  {v:'reshoot',l:'要撮り直し'},
+  {v:'edited', l:'編集済み'},
+  {v:'rejected',l:'不採用'},
+];
 
-/* ══════ UTILS ══════ */
-function toast(msg, ok=true) {
-  const t = document.getElementById('toast');
-  t.textContent = msg;
-  t.style.borderColor = ok ? 'var(--teal)' : 'var(--orange)';
-  t.style.color = ok ? 'var(--teal)' : 'var(--orange)';
+const VAR_DEF=[
+  {id:'theme',      label:'今回のテーマ',      ph:'食事とサプリ／動画編集／父親哲学／筋トレ／AI活用',cls:''},
+  {id:'question',   label:'今回の問い',        ph:'疲れて帰った夜、人は何を口に入れるべきか？',     cls:''},
+  {id:'enemy',      label:'今回の敵',          ph:'疲労で選択を捨てること',                        cls:'ve',badge:'⚠ KEY ENEMY'},
+  {id:'oneMove',    label:'今回の一手',         ph:'水分・電解質・たんぱく質だけ整える',             cls:'vo',badge:'▸ KEY ACTION'},
+  {id:'emotion',    label:'今回の主感情',       ph:'罪悪感 → 制御感 ／ 虚無 → 小さな前進',         cls:''},
+  {id:'visualMotif',label:'今回の映像モチーフ', ph:'水、塩、冷蔵庫の光、作業着の背中',               cls:''},
+  {id:'audioMotif', label:'今回の音モチーフ',   ph:'水音、冷蔵庫の開閉音、打鍵音、無音',             cls:''},
+  {id:'lightColor', label:'今回の光／色',       ph:'暗い台所、冷たいPC光、青白いモニター光',          cls:''},
+  {id:'dontShow',   label:'今回見せないもの',   ph:'自己啓発臭、AI画面の長見せ、筋トレ自慢',          cls:''},
+];
+
+const GUIDE_ITEMS=[
+  {key:'BEAT',          val:'カットではなく、視聴者心理が一段進む節目。1行＝1BEAT。'},
+  {key:'CUT BANK',      val:'そのBEATで使える候補カットを溜める場所。カット数は制限しない。'},
+  {key:'選抜カット',     val:'CUT BANKから、この1本で実際に使うカット。'},
+  {key:'状況Bロール',    val:'場所や状況を伝えるカット。例：朝の部屋、会社、夜道、ジム。'},
+  {key:'感情Bロール',    val:'視聴者の感情を動かすカット。例：止まった手、疲れた背中、椅子に沈む身体。'},
+  {key:'ブリッジBロール', val:'次のBEATへ感情をつなぐ余韻カット。例：閉じたドア、火花後の鉄、止まったバイク。'},
+  {key:'準備・実行・余韻', val:'一つの動作を「予感 → 動作 → 感情の着地」に分ける考え方。Vlog化を防ぐ構造的な歯止め。'},
+];
+
+const CHK_PRE=[
+  '今回の敵は明確か',
+  '今回の一手は小さいか',
+  '今回の主感情は決まっているか',
+  '各BEATに今回の変数が入っているか',
+  'CUT BANKがA/B/C/D/Eに分かれているか',
+  '必須カットは撮影可能か',
+  '状況Bロールはあるか',
+  '感情Bロールはあるか',
+  'ブリッジBロールはあるか',
+  'AIは主役ではなく参謀になっているか',
+  '帰宅後の静止シーンがあるか',
+  '余韻カットを撮る設計になっているか',
+];
+
+const CHK_POST=[
+  'ただの一日紹介になっていないか',
+  '朝活動画になっていないか',
+  '仕事自慢になっていないか',
+  '筋トレ自慢になっていないか',
+  'AIアプリ宣伝に見えていないか',
+  '帰宅後の静止が第二フックになっているか',
+  '一手が大きすぎないか',
+  '最後の敵の命名が記憶に残るか',
+  '余韻があるか',
+  '「保存して」「フォローして」と言わずに記憶させているか',
+];
+
+/* ═══ STATE ═══ */
+let PAT='',GID='',EPS={},CUR=null,ep=null,cid=0;
+const KP='abd_pat',KG='abd_gid',FILE='andbody_sb_v2.json';
+
+/* ═══ UTILS ═══ */
+function toast(msg,ok=true){
+  const t=document.getElementById('toast');
+  t.textContent=msg;
+  t.style.borderColor=ok?'var(--teal)':'var(--orange)';
+  t.style.color=ok?'var(--teal)':'var(--orange)';
   t.classList.add('show');
   clearTimeout(t._t);
-  t._t = setTimeout(() => t.classList.remove('show'), 2800);
+  t._t=setTimeout(()=>t.classList.remove('show'),2800);
 }
-function view(id) {
-  document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
-  document.getElementById(id).classList.add('active');
-}
-function esc(s) {
-  return String(s||'').replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
-}
-function strip(s) { return (s||'').replace(/<[^>]*>/g,'').trim(); }
-function setSS(msg, c='') {
-  const e = document.getElementById('syncSt');
-  e.textContent = msg;
-  e.className = 'sync-st' + (c?' '+c:'');
-}
+function showView(id){document.querySelectorAll('.view').forEach(v=>v.classList.remove('active'));document.getElementById(id).classList.add('active');}
+function setSS(msg,c=''){const e=document.getElementById('ss');e.textContent=msg;e.className='ss'+(c?' '+c:'');}
+function esc(s){return String(s||'').replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+function strip(s){return(s||'').replace(/<[^>]*>/g,'').trim();}
 
-/* ══════ GIST API ══════ */
-const GH = 'https://api.github.com';
-const FILE = 'andbody_storyboard.json';
-
-async function gGet() {
-  const r = await fetch(`${GH}/gists/${GID}`, { headers: { Authorization:`token ${PAT}`, Accept:'application/vnd.github+json' } });
-  if (!r.ok) throw new Error('GET '+r.status);
-  const d = await r.json();
-  const raw = d.files?.[FILE]?.content;
-  return raw ? JSON.parse(raw) : { episodes:{} };
-}
-async function gPatch(data) {
-  const r = await fetch(`${GH}/gists/${GID}`, {
-    method:'PATCH',
-    headers: { Authorization:`token ${PAT}`, Accept:'application/vnd.github+json', 'Content-Type':'application/json' },
-    body: JSON.stringify({ files:{ [FILE]:{ content: JSON.stringify(data,null,2) } } })
+function matSel(val,onch){
+  const s=document.createElement('select');
+  s.className='mat-sel';
+  MAT.forEach(o=>{
+    const opt=document.createElement('option');
+    opt.value=o.v;opt.textContent=o.l;
+    if(o.v===(val||'notShot'))opt.selected=true;
+    s.appendChild(opt);
   });
-  if (!r.ok) throw new Error('PATCH '+r.status);
+  if(onch)s.addEventListener('change',onch);
+  return s;
 }
-async function gCreate() {
-  const r = await fetch(`${GH}/gists`, {
-    method:'POST',
-    headers: { Authorization:`token ${PAT}`, Accept:'application/vnd.github+json', 'Content-Type':'application/json' },
-    body: JSON.stringify({ description:'ANDBODY OS Storyboard', public:false, files:{ [FILE]:{ content: JSON.stringify({episodes:{}},null,2) } } })
+
+function beatSel(val){
+  const s=document.createElement('select');
+  s.className='beat-sel';
+  BEATS.forEach(b=>{
+    const o=document.createElement('option');
+    o.value=b.id;o.textContent=b.label;
+    if(b.id===val)o.selected=true;
+    s.appendChild(o);
   });
-  if (!r.ok) throw new Error('CREATE '+r.status);
-  return (await r.json()).id;
+  return s;
 }
 
-/* ══════ SETUP ══════ */
-async function doSetup() {
-  const pat = document.getElementById('patInput').value.trim();
-  const err = document.getElementById('sErr');
-  err.style.display = 'none';
-  if (!pat) { err.textContent='トークンを入力してください'; err.style.display='block'; return; }
-  PAT = pat;
-  try {
-    const ru = await fetch(`${GH}/user`, { headers:{ Authorization:`token ${PAT}` } });
-    if (!ru.ok) throw new Error('トークンが無効です');
-    const rg = await fetch(`${GH}/gists?per_page=100`, { headers:{ Authorization:`token ${PAT}`, Accept:'application/vnd.github+json' } });
-    const gs = await rg.json();
-    const ex = gs.find(g => g.files?.[FILE]);
-    GID = ex ? ex.id : await gCreate();
-    localStorage.setItem(K_PAT, PAT);
-    localStorage.setItem(K_GID, GID);
-    await loadDash();
-  } catch(e) {
-    err.textContent = e.message;
-    err.style.display = 'block';
-  }
+function emptyBeat(){
+  return{time:'',variable:'',question:'',psychology:'',emotion:'',value:'',
+         cutA:'',cutB:'',cutC:'',cutD:'',cutE:'',
+         selectedCut:'',audio:'',telop:'',
+         prep:'',action:'',afterTaste:'',
+         naming:'',ng:'',materialStatus:'notShot'};
 }
 
-function resetPAT() {
-  if (!confirm('トークン設定をリセットしますか？データは削除されません。')) return;
-  localStorage.removeItem(K_PAT);
-  localStorage.removeItem(K_GID);
-  PAT=''; GID='';
-  view('setupView');
-}
-
-/* ══════ DASHBOARD ══════ */
-async function loadDash() {
-  document.getElementById('loader').classList.remove('hidden');
-  try {
-    const d = await gGet();
-    EPS = d.episodes || {};
-    renderDash();
-    view('dashView');
-  } catch(e) {
-    toast('Gist読み込み失敗：'+e.message, false);
-  } finally {
-    document.getElementById('loader').classList.add('hidden');
-  }
-}
-
-async function syncDash() {
-  try {
-    const d = await gGet();
-    EPS = d.episodes || {};
-    renderDash();
-    toast('↻ 同期完了');
-  } catch(e) { toast('同期失敗：'+e.message, false); }
-}
-
-function renderDash() {
-  const grid = document.getElementById('epGrid');
-  grid.innerHTML = '';
-  Object.keys(EPS)
-    .sort((a,b) => (EPS[b].updatedAt||0) - (EPS[a].updatedAt||0))
-    .forEach(id => {
-      const ep = EPS[id];
-      const c = document.createElement('div');
-      c.className = 'ep-card';
-      c.innerHTML = `
-        <button class="ep-del-btn" onclick="event.stopPropagation();delEp('${id}')">✕</button>
-        <div class="ep-card-id">EP. ${id.slice(-4).toUpperCase()}</div>
-        <div class="ep-card-title">${ep.episode||'UNTITLED'}</div>
-        <div class="ep-card-sub">${ep.variable?.enemy ? '敵: '+strip(ep.variable.enemy) : ep.variable?.theme ? strip(ep.variable.theme) : '—'}</div>
-        <div class="ep-card-date">${ep.updatedAt ? new Date(ep.updatedAt).toLocaleDateString('ja-JP') : ''}</div>
-      `;
-      c.onclick = () => openEp(id);
-      grid.appendChild(c);
-    });
-  const nc = document.createElement('div');
-  nc.className = 'ep-card nc';
-  nc.textContent = '+ NEW EPISODE';
-  nc.onclick = newEp;
-  grid.appendChild(nc);
-}
-
-function newEp() {
-  CUR = 'ep_'+Date.now();
-  EPS[CUR] = emptyEp();
-  loadEditor(EPS[CUR]);
-  view('editorView');
-}
-
-function openEp(id) {
-  CUR = id;
-  loadEditor(EPS[id]);
-  view('editorView');
-}
-
-async function delEp(id) {
-  if (!confirm('このエピソードを削除しますか？')) return;
-  delete EPS[id];
-  renderDash();
-  try { await gPatch({episodes:EPS}); toast('削除・保存完了'); }
-  catch(e) { toast('ローカル削除のみ（Gist未同期）',false); }
-}
-
-function backToDash() {
-  renderDash();
-  view('dashView');
-}
-
-/* ══════ EMPTY EPISODE ══════ */
-function emptyEp() {
-  const beats = {};
-  BEATS.forEach(b => {
-    beats[b.id] = { time:'', variable:'', cutBank:'', selectedCut:'', audio:'', telop:'', ng:'' };
-  });
-  return {
-    episode: '',
-    variable: { theme:'', question:'', enemy:'', oneMove:'', emotion:'', visual:'', audio:'', light:'', dontShow:'' },
+function emptyEp(){
+  const beats={};
+  BEATS.forEach(b=>{beats[b.id]=emptyBeat();});
+  return{
+    episode:'',
+    variable:{theme:'',question:'',enemy:'',oneMove:'',emotion:'',visualMotif:'',audioMotif:'',lightColor:'',dontShow:''},
     beats,
-    selectedCuts: [],
-    updatedAt: Date.now()
+    checksPre:new Array(CHK_PRE.length).fill(false),
+    checksPost:new Array(CHK_POST.length).fill(false),
+    updatedAt:Date.now()
   };
 }
 
-/* ══════ EDITOR ══════ */
-const VAR_KEYS = ['theme','question','enemy','oneMove','emotion','visual','audio','light','dontShow'];
+/* ═══ GIST API ═══ */
+const GH='https://api.github.com';
+async function gGet(){
+  const r=await fetch(`${GH}/gists/${GID}`,{headers:{Authorization:`token ${PAT}`,Accept:'application/vnd.github+json'}});
+  if(!r.ok)throw new Error('GET '+r.status);
+  const d=await r.json();
+  const raw=d.files?.[FILE]?.content;
+  return raw?JSON.parse(raw):{episodes:{}};
+}
+async function gPatch(data){
+  const r=await fetch(`${GH}/gists/${GID}`,{
+    method:'PATCH',
+    headers:{Authorization:`token ${PAT}`,Accept:'application/vnd.github+json','Content-Type':'application/json'},
+    body:JSON.stringify({files:{[FILE]:{content:JSON.stringify(data,null,2)}}})
+  });
+  if(!r.ok)throw new Error('PATCH '+r.status);
+}
+async function gCreate(){
+  const r=await fetch(`${GH}/gists`,{
+    method:'POST',
+    headers:{Authorization:`token ${PAT}`,Accept:'application/vnd.github+json','Content-Type':'application/json'},
+    body:JSON.stringify({description:'ANDBODY OS Storyboard v2',public:false,files:{[FILE]:{content:JSON.stringify({episodes:{}},null,2)}}})
+  });
+  if(!r.ok)throw new Error('CREATE '+r.status);
+  return(await r.json()).id;
+}
 
-function loadEditor(ep) {
-  document.getElementById('epNameIn').value = ep.episode || '';
-  document.getElementById('epBarTitle').textContent = ep.episode || '—';
+/* ═══ SETUP ═══ */
+async function doSetup(){
+  const pat=document.getElementById('patInput').value.trim();
+  const err=document.getElementById('sErr');
+  err.style.display='none';
+  if(!pat){err.textContent='トークンを入力してください';err.style.display='block';return;}
+  PAT=pat;
+  try{
+    const ru=await fetch(`${GH}/user`,{headers:{Authorization:`token ${PAT}`}});
+    if(!ru.ok)throw new Error('トークンが無効です');
+    const rg=await fetch(`${GH}/gists?per_page=100`,{headers:{Authorization:`token ${PAT}`,Accept:'application/vnd.github+json'}});
+    const gs=await rg.json();
+    const ex=gs.find(g=>g.files?.[FILE]);
+    GID=ex?ex.id:await gCreate();
+    localStorage.setItem(KP,PAT);
+    localStorage.setItem(KG,GID);
+    await loadDash();
+  }catch(e){err.textContent=e.message;err.style.display='block';}
+}
 
-  VAR_KEYS.forEach(k => {
-    const el = document.getElementById('v_'+k);
-    if (el) el.innerHTML = ep.variable?.[k] || '';
+function resetPAT(){
+  if(!confirm('トークン設定をリセットしますか？'))return;
+  localStorage.removeItem(KP);localStorage.removeItem(KG);
+  PAT='';GID='';showView('setupView');
+}
+
+/* ═══ DASHBOARD ═══ */
+async function loadDash(){
+  document.getElementById('loader').classList.remove('hidden');
+  try{
+    const d=await gGet();EPS=d.episodes||{};
+    renderDash();showView('dashView');
+  }catch(e){toast('Gist読み込み失敗：'+e.message,false);}
+  finally{document.getElementById('loader').classList.add('hidden');}
+}
+
+async function syncDash(){
+  try{const d=await gGet();EPS=d.episodes||{};renderDash();toast('↻ 同期完了');}
+  catch(e){toast('同期失敗：'+e.message,false);}
+}
+
+function renderDash(){
+  const g=document.getElementById('epGrid');g.innerHTML='';
+  Object.keys(EPS).sort((a,b)=>(EPS[b].updatedAt||0)-(EPS[a].updatedAt||0)).forEach(id=>{
+    const e=EPS[id];
+    const c=document.createElement('div');c.className='ep-card';
+    c.innerHTML=`<button class="ep-del" onclick="event.stopPropagation();delEp('${id}')">✕</button>
+      <div class="epc-id">EP. ${id.slice(-4).toUpperCase()}</div>
+      <div class="epc-title">${e.episode||'UNTITLED'}</div>
+      <div class="epc-sub">${e.variable?.enemy?'敵: '+strip(e.variable.enemy):e.variable?.theme?strip(e.variable.theme):'—'}</div>
+      <div class="epc-date">${e.updatedAt?new Date(e.updatedAt).toLocaleDateString('ja-JP'):''}</div>`;
+    c.onclick=()=>openEp(id);g.appendChild(c);
+  });
+  const nc=document.createElement('div');nc.className='ep-card nc';nc.textContent='+ NEW EPISODE';nc.onclick=newEp;g.appendChild(nc);
+}
+
+function newEp(){CUR='ep_'+Date.now();ep=emptyEp();EPS[CUR]=ep;loadEditor();showView('editorView');}
+
+function openEp(id){
+  CUR=id;ep=JSON.parse(JSON.stringify(EPS[id]));
+  // Fill missing fields
+  BEATS.forEach(b=>{
+    if(!ep.beats)ep.beats={};
+    if(!ep.beats[b.id])ep.beats[b.id]=emptyBeat();
+    else{const em=emptyBeat();Object.keys(em).forEach(k=>{if(ep.beats[b.id][k]===undefined)ep.beats[b.id][k]=em[k];});}
+  });
+  if(!ep.variable)ep.variable={};
+  if(!ep.selectedCuts)ep.selectedCuts=[];
+  if(!ep.checksPre)ep.checksPre=new Array(CHK_PRE.length).fill(false);
+  if(!ep.checksPost)ep.checksPost=new Array(CHK_POST.length).fill(false);
+  loadEditor();showView('editorView');
+}
+
+async function delEp(id){
+  if(!confirm('このエピソードを削除しますか？'))return;
+  delete EPS[id];renderDash();
+  try{await gPatch({episodes:EPS});toast('削除・保存完了');}
+  catch(e){toast('ローカル削除のみ',false);}
+}
+
+function backToDash(){renderDash();showView('dashView');}
+
+/* ═══ RENDER GUIDE ═══ */
+function renderGuide(){
+  const b=document.getElementById('guideBody');b.innerHTML='';
+  GUIDE_ITEMS.forEach(item=>{
+    const d=document.createElement('div');d.className='g-item';
+    d.innerHTML=`<div class="g-key">${item.key}</div><div class="g-val">${item.val}</div>`;
+    b.appendChild(d);
+  });
+}
+
+/* ═══ RENDER VARIABLE TABLE ═══ */
+function renderVar(){
+  const t=document.getElementById('varTbl');t.innerHTML='';
+  VAR_DEF.forEach(f=>{
+    const tr=document.createElement('tr');tr.className=f.cls;
+    const vk=document.createElement('td');vk.className='vk';
+    if(f.badge)vk.innerHTML=`<span class="v-badge">${f.badge}</span>${f.label}`;
+    else vk.textContent=f.label;
+    const vv=document.createElement('td');vv.className='vv';
+    const ce=document.createElement('div');
+    ce.contentEditable='true';
+    ce.dataset.var=f.id;
+    ce.dataset.ph=f.ph;
+    ce.innerHTML=ep.variable[f.id]||'';
+    vv.appendChild(ce);
+    tr.appendChild(vk);tr.appendChild(vv);t.appendChild(tr);
+  });
+}
+
+/* ═══ RENDER DESKTOP STORYBOARD ROW ═══ */
+function makeCE(beat,field,ph,val,extra){
+  const ce=document.createElement('div');
+  ce.contentEditable='true';
+  ce.dataset.beat=beat;ce.dataset.field=field;ce.dataset.ph=ph;
+  ce.innerHTML=val||'';
+  if(extra)Object.assign(ce.style,extra);
+  return ce;
+}
+
+function renderSbRow(def){
+  const b=ep.beats[def.id]||emptyBeat();
+  const tr=document.createElement('tr');tr.dataset.beat=def.id;
+
+  // 1 BEAT+time
+  const t1=document.createElement('td');t1.className='bc';
+  t1.innerHTML=`<span class="bl">${def.label}</span>`;
+  const ti=document.createElement('input');ti.className='bt-in';ti.type='text';
+  ti.value=b.time||'';ti.placeholder='0:00~0:00';ti.maxLength=12;
+  ti.dataset.beat=def.id;ti.dataset.field='time';
+  t1.appendChild(ti);tr.appendChild(t1);
+
+  // 2 Role (fixed)
+  const t2=document.createElement('td');t2.className='rc';
+  t2.innerHTML=`<div class="rf">${def.role}</div>`;tr.appendChild(t2);
+
+  // 3-8 editable
+  [
+    {field:'variable',  ph:'このBEATで今回のテーマの何を扱うか'},
+    {field:'question',  ph:'このBEATで視聴者に刺す問い'},
+    {field:'psychology',ph:'「俺も〜している」と思わせる'},
+    {field:'emotion',   ph:'虚無、重圧、罪悪感、微かな希望...'},
+    {field:'value',     ph:'疲労時は気合いではなく最小行動へ'},
+  ].forEach(f=>{
+    const td=document.createElement('td');
+    td.appendChild(makeCE(def.id,f.field,f.ph,b[f.field]));
+    tr.appendChild(td);
   });
 
-  renderSbBody(ep.beats || {});
+  // 9 CUT BANK
+  const t9=document.createElement('td');
+  [{cls:'cbs-a',label:'A 必須',field:'cutA',ph:'このBEATを成立させるために必須'},
+   {cls:'cbs-b',label:'B 状況B',field:'cutB',ph:'場所・状況を伝える'},
+   {cls:'cbs-c',label:'C 感情B',field:'cutC',ph:'視聴者の感情を動かす'},
+   {cls:'cbs-d',label:'D 橋B',  field:'cutD',ph:'次のBEATへ感情をつなぐ余韻'},
+   {cls:'cbs-e',label:'E 予備', field:'cutE',ph:'編集で足りない時の補助'},
+  ].forEach(cb=>{
+    const s=document.createElement('div');s.className='cbs '+cb.cls;
+    const l=document.createElement('span');l.className='cbl';l.textContent=cb.label;
+    const ce=makeCE(def.id,cb.field,cb.ph,b[cb.field],{whiteSpace:'pre-wrap'});
+    s.appendChild(l);s.appendChild(ce);t9.appendChild(s);
+  });
+  tr.appendChild(t9);
 
-  document.getElementById('cutBody').innerHTML = '';
-  (ep.selectedCuts || []).forEach(c => addCut(c));
+  // 10 Selected cut
+  const t10=document.createElement('td');
+  t10.appendChild(makeCE(def.id,'selectedCut','実際に使うカット...',b.selectedCut,{color:'var(--wh)'}));
+  tr.appendChild(t10);
 
+  // 11 Audio
+  const t11=document.createElement('td');
+  t11.appendChild(makeCE(def.id,'audio','音響設計...',b.audio));
+  tr.appendChild(t11);
+
+  // 12 Telop
+  const t12=document.createElement('td');
+  t12.appendChild(makeCE(def.id,'telop','短く、一撃で。説明ではなく思想を書く',b.telop));
+  tr.appendChild(t12);
+
+  // 13 Prep/Action/AfterTaste
+  const t13=document.createElement('td');
+  [{field:'prep',label:'準備',ph:'これから何かが起きる予感'},
+   {field:'action',label:'実行',ph:'実際の動作'},
+   {field:'afterTaste',label:'余韻',ph:'動作の後に残る感情'},
+  ].forEach(p=>{
+    const s=document.createElement('div');s.className='pars';
+    const l=document.createElement('span');l.className='parl';l.textContent=p.label;
+    s.appendChild(l);s.appendChild(makeCE(def.id,p.field,p.ph,b[p.field]));
+    t13.appendChild(s);
+  });
+  tr.appendChild(t13);
+
+  // 14 Naming
+  const t14=document.createElement('td');
+  t14.appendChild(makeCE(def.id,'naming','敵の命名へどうつながるか',b.naming));
+  tr.appendChild(t14);
+
+  // 15 NG
+  const t15=document.createElement('td');
+  t15.appendChild(makeCE(def.id,'ng','説明しすぎ、自己啓発臭、AI宣伝',b.ng));
+  tr.appendChild(t15);
+
+  // 16 Material status
+  const t16=document.createElement('td');
+  const ms=matSel(b.materialStatus,e=>{
+    if(ep)ep.beats[def.id].materialStatus=e.target.value;
+    const mc=document.querySelector(`.beat-card[data-beat="${def.id}"] .bc-mat`);
+    if(mc)mc.value=e.target.value;
+  });
+  t16.appendChild(ms);tr.appendChild(t16);
+
+  return tr;
+}
+
+/* ═══ RENDER MOBILE BEAT CARD ═══ */
+function makeBcCE(beat,field,ph,val){
+  const ce=document.createElement('div');
+  ce.contentEditable='true';ce.dataset.beat=beat;ce.dataset.field=field;ce.dataset.ph=ph;ce.innerHTML=val||'';
+  return ce;
+}
+
+function bcField(label,beat,field,ph,val){
+  const d=document.createElement('div');d.className='bc-f';
+  const l=document.createElement('span');l.className='bc-fl';l.textContent=label;
+  d.appendChild(l);d.appendChild(makeBcCE(beat,field,ph,val));
+  return d;
+}
+
+function accField(label,beat,field,ph,val){
+  const d=document.createElement('div');d.className='acc-f';
+  const l=document.createElement('span');l.className='acc-fl';l.textContent=label;
+  d.appendChild(l);d.appendChild(makeBcCE(beat,field,ph,val));
+  return d;
+}
+
+function renderBeatCard(def){
+  const b=ep.beats[def.id]||emptyBeat();
+  const card=document.createElement('div');card.className='beat-card';card.dataset.beat=def.id;
+
+  // Header
+  const head=document.createElement('div');head.className='bch';
+  const lbl=document.createElement('span');lbl.className='bch-lbl';lbl.textContent=def.label;
+  const ti=document.createElement('input');ti.className='bch-t';ti.type='text';
+  ti.value=b.time||'';ti.placeholder='0:00~0:00';ti.maxLength=12;
+  ti.dataset.beat=def.id;ti.dataset.field='time';
+  head.appendChild(lbl);head.appendChild(ti);card.appendChild(head);
+
+  // Always visible
+  const always=document.createElement('div');always.className='bc-always';
+  always.appendChild(bcField('今回の変数',def.id,'variable','このBEATで今回のテーマの何を扱うか',b.variable));
+  always.appendChild(bcField('選抜カット',def.id,'selectedCut','実際に使うカット',b.selectedCut));
+  always.appendChild(bcField('音響設計',def.id,'audio','音響設計...',b.audio));
+  always.appendChild(bcField('テロップ候補',def.id,'telop','テロップ候補...',b.telop));
+  // Material status
+  const mf=document.createElement('div');mf.className='bc-f';
+  const ml=document.createElement('span');ml.className='bc-fl';ml.textContent='素材状態';
+  const ms=matSel(b.materialStatus,e=>{
+    if(ep)ep.beats[def.id].materialStatus=e.target.value;
+    const dr=document.querySelector(`tr[data-beat="${def.id}"] .mat-sel`);
+    if(dr)dr.value=e.target.value;
+  });
+  ms.classList.add('bc-mat');
+  mf.appendChild(ml);mf.appendChild(ms);always.appendChild(mf);
+  card.appendChild(always);
+
+  // Acc1: 心理設計
+  const a1=document.createElement('details');a1.className='acc-det';
+  a1.innerHTML=`<summary class="acc-sum">心理設計を開く</summary>`;
+  const a1b=document.createElement('div');a1b.className='acc-body';
+  const roleDiv=document.createElement('div');roleDiv.className='acc-f';
+  roleDiv.innerHTML=`<span class="acc-fl">裏の役割</span><div style="font-family:Noto Sans JP,sans-serif;font-size:11px;color:#2a2a2a;line-height:1.7;">${def.role}</div>`;
+  a1b.appendChild(roleDiv);
+  a1b.appendChild(accField('今回の問い',def.id,'question','このBEATで視聴者に刺す問い',b.question));
+  a1b.appendChild(accField('視聴者心理',def.id,'psychology','「俺も〜している」と思わせる',b.psychology));
+  a1b.appendChild(accField('起こす感情',def.id,'emotion','虚無、重圧、罪悪感...',b.emotion));
+  a1b.appendChild(accField('提供する価値',def.id,'value','疲労時は気合いではなく最小行動へ',b.value));
+  a1.appendChild(a1b);card.appendChild(a1);
+
+  // Acc2: CUT BANK
+  const a2=document.createElement('details');a2.className='acc-det';
+  a2.innerHTML=`<summary class="acc-sum">CUT BANKを開く</summary>`;
+  const a2b=document.createElement('div');a2b.className='acc-body';
+  a2b.appendChild(accField('A 必須カット',def.id,'cutA','このBEATを成立させるために必須',b.cutA));
+  a2b.appendChild(accField('B 状況Bロール',def.id,'cutB','場所・状況を伝える',b.cutB));
+  a2b.appendChild(accField('C 感情Bロール',def.id,'cutC','視聴者の感情を動かす',b.cutC));
+  a2b.appendChild(accField('D ブリッジBロール',def.id,'cutD','次のBEATへ感情をつなぐ余韻',b.cutD));
+  a2b.appendChild(accField('E 予備カット',def.id,'cutE','編集で足りない時の補助',b.cutE));
+  a2.appendChild(a2b);card.appendChild(a2);
+
+  // Acc3: 準備・実行・余韻
+  const a3=document.createElement('details');a3.className='acc-det';
+  a3.innerHTML=`<summary class="acc-sum">準備・実行・余韻を開く</summary>`;
+  const a3b=document.createElement('div');a3b.className='acc-body';
+  a3b.appendChild(accField('準備',def.id,'prep','これから何かが起きる予感',b.prep));
+  a3b.appendChild(accField('実行',def.id,'action','実際の動作',b.action));
+  a3b.appendChild(accField('余韻',def.id,'afterTaste','動作の後に残る感情',b.afterTaste));
+  a3.appendChild(a3b);card.appendChild(a3);
+
+  // Acc4: NG確認
+  const a4=document.createElement('details');a4.className='acc-det';
+  a4.innerHTML=`<summary class="acc-sum">NG確認を開く</summary>`;
+  const a4b=document.createElement('div');a4b.className='acc-body';
+  a4b.appendChild(accField('敵の命名への接続',def.id,'naming','敵の命名へどうつながるか',b.naming));
+  a4b.appendChild(accField('NG／削るもの',def.id,'ng','説明しすぎ、自己啓発臭、AI宣伝',b.ng));
+  a4.appendChild(a4b);card.appendChild(a4);
+
+  return card;
+}
+
+/* ═══ SELECTED CUTS ═══ */
+function addCut(data={}){
+  cid++;const id='c'+cid;
+  const{beat='hook',time='',cut='',purpose='',howToShoot='',audio='',telop='',materialStatus='notShot',memo=''}=data;
+
+  // Desktop row
+  const tbody=document.getElementById('cutBody');
+  const no=tbody.querySelectorAll('tr').length+1;
+  const tr=document.createElement('tr');tr.dataset.cid=id;
+
+  const t1=document.createElement('td');t1.className='cn';t1.textContent=no;
+  const t2=document.createElement('td');
+  const bs=beatSel(beat);bs.dataset.cid=id;bs.dataset.field='beat';t2.appendChild(bs);
+  const t3=document.createElement('td');
+  const ti=document.createElement('input');ti.className='ct-in';ti.type='text';
+  ti.value=time;ti.placeholder='0〜0';ti.dataset.cid=id;ti.dataset.field='time';t3.appendChild(ti);
+
+  const tds=[
+    {field:'cut',ph:'選抜カットの内容...',val:cut},
+    {field:'purpose',ph:'このカットの目的...',val:purpose},
+    {field:'howToShoot',ph:'撮り方・フレーミング...',val:howToShoot},
+    {field:'audio',ph:'音設計...',val:audio},
+    {field:'telop',ph:'テロップ...',val:telop},
+  ].map(f=>{
+    const td=document.createElement('td');
+    const ce=document.createElement('div');ce.contentEditable='true';
+    ce.dataset.cid=id;ce.dataset.field=f.field;ce.dataset.ph=f.ph;ce.innerHTML=f.val||'';
+    td.appendChild(ce);return td;
+  });
+
+  const tm=document.createElement('td');
+  const ms=matSel(materialStatus,e=>{
+    const mc=document.querySelector(`.cut-card[data-cid="${id}"] .cc-ms`);
+    if(mc)mc.value=e.target.value;
+  });
+  ms.dataset.cid=id;ms.dataset.field='materialStatus';tm.appendChild(ms);
+
+  const tme=document.createElement('td');
+  const ceMemo=document.createElement('div');ceMemo.contentEditable='true';
+  ceMemo.dataset.cid=id;ceMemo.dataset.field='memo';ceMemo.dataset.ph='メモ...';ceMemo.innerHTML=memo||'';
+  tme.appendChild(ceMemo);
+
+  const tdel=document.createElement('td');
+  tdel.innerHTML=`<button class="c-del" onclick="removeCut('${id}')">✕</button>`;
+
+  tr.appendChild(t1);tr.appendChild(t2);tr.appendChild(t3);
+  tds.forEach(td=>tr.appendChild(td));
+  tr.appendChild(tm);tr.appendChild(tme);tr.appendChild(tdel);
+  tbody.appendChild(tr);
+
+  // Mobile card
+  const mc=document.createElement('div');mc.className='cut-card';mc.dataset.cid=id;
+  const mh=document.createElement('div');mh.className='cut-card-h';
+  const mn=document.createElement('span');mn.className='cc-no';mn.textContent=no;
+  const mbs=beatSel(beat);mbs.className='beat-sel';mbs.dataset.cid=id;mbs.dataset.field='beat';
+  const mt=document.createElement('input');mt.className='cc-t';mt.type='text';
+  mt.value=time;mt.placeholder='0〜0';mt.dataset.cid=id;mt.dataset.field='time';
+  const mmd=document.createElement('div');mmd.className='cc-mat';
+  const mms=matSel(materialStatus,e=>{
+    const dr=document.querySelector(`tr[data-cid="${id}"] .mat-sel`);
+    if(dr)dr.value=e.target.value;
+  });
+  mms.classList.add('cc-ms');mmd.appendChild(mms);
+  mh.appendChild(mn);mh.appendChild(mbs);mh.appendChild(mt);mh.appendChild(mmd);mc.appendChild(mh);
+
+  const mb=document.createElement('div');mb.className='cut-card-b';
+  // Always: cut
+  const cf=document.createElement('div');cf.className='bc-f';
+  cf.innerHTML='<span class="bc-fl">選抜カット</span>';
+  const cce=document.createElement('div');cce.contentEditable='true';
+  cce.dataset.cid=id;cce.dataset.field='cut';cce.dataset.ph='選抜カットの内容...';cce.innerHTML=cut||'';
+  cf.appendChild(cce);mb.appendChild(cf);
+
+  // Accordion: details
+  const ma=document.createElement('details');ma.className='acc-det';
+  ma.innerHTML='<summary class="acc-sum">詳細を開く</summary>';
+  const mab=document.createElement('div');mab.className='acc-body';
+  [{field:'purpose',ph:'このカットの目的...',label:'目的',val:purpose},
+   {field:'howToShoot',ph:'フレーミング・固定位置...',label:'撮り方',val:howToShoot},
+   {field:'audio',ph:'音設計...',label:'音',val:audio},
+   {field:'telop',ph:'テロップ...',label:'テロップ',val:telop},
+   {field:'memo',ph:'メモ...',label:'メモ',val:memo},
+  ].forEach(f=>{
+    const d=document.createElement('div');d.className='acc-f';
+    const l=document.createElement('span');l.className='acc-fl';l.textContent=f.label;
+    const ce=document.createElement('div');ce.contentEditable='true';
+    ce.dataset.cid=id;ce.dataset.field=f.field;ce.dataset.ph=f.ph;ce.innerHTML=f.val||'';
+    d.appendChild(l);d.appendChild(ce);mab.appendChild(d);
+  });
+  ma.appendChild(mab);mb.appendChild(ma);
+
+  const mdel=document.createElement('button');mdel.className='cc-del';
+  mdel.textContent='✕ このカットを削除';mdel.onclick=()=>removeCut(id);
+  mb.appendChild(mdel);mc.appendChild(mb);
+  document.getElementById('mobileCuts').appendChild(mc);
+}
+
+function removeCut(id){
+  document.querySelector(`tr[data-cid="${id}"]`)?.remove();
+  document.querySelector(`.cut-card[data-cid="${id}"]`)?.remove();
+  // Renumber
+  document.querySelectorAll('#cutBody tr').forEach((tr,i)=>tr.querySelector('.cn').textContent=i+1);
+  document.querySelectorAll('#mobileCuts .cut-card').forEach((c,i)=>c.querySelector('.cc-no').textContent=i+1);
+}
+
+/* ═══ CHECKLISTS ═══ */
+function renderChk(){
+  ['Pre','Post'].forEach(t=>{
+    const items=t==='Pre'?CHK_PRE:CHK_POST;
+    const checks=t==='Pre'?ep.checksPre:ep.checksPost;
+    const el=document.getElementById('chk'+t);el.innerHTML='';
+    items.forEach((txt,i)=>{
+      const lbl=document.createElement('label');lbl.className='chk-item';
+      const cb=document.createElement('input');cb.type='checkbox';cb.className='chk-cb';
+      cb.checked=checks[i]||false;
+      cb.addEventListener('change',()=>{
+        if(ep){const arr=t==='Pre'?ep.checksPre:ep.checksPost;arr[i]=cb.checked;}
+      });
+      const sp=document.createElement('span');sp.className='chk-tx';sp.textContent=txt;
+      lbl.appendChild(cb);lbl.appendChild(sp);el.appendChild(lbl);
+    });
+  });
+}
+
+/* ═══ LOAD EDITOR ═══ */
+function loadEditor(){
+  document.getElementById('epNameIn').value=ep.episode||'';
+  document.getElementById('epBarTtl').textContent=ep.episode||'—';
+  renderGuide();
+  renderVar();
+  // Desktop SB
+  const sb=document.getElementById('sbBody');sb.innerHTML='';
+  BEATS.forEach(b=>sb.appendChild(renderSbRow(b)));
+  // Mobile SB
+  const msb=document.getElementById('mobileSb');msb.innerHTML='';
+  BEATS.forEach(b=>msb.appendChild(renderBeatCard(b)));
+  // Cuts
+  document.getElementById('cutBody').innerHTML='';
+  document.getElementById('mobileCuts').innerHTML='';
+  cid=0;
+  (ep.selectedCuts||[]).forEach(c=>addCut(c));
+  renderChk();
   setSS('—');
 }
 
-function renderSbBody(beats) {
-  const tbody = document.getElementById('sbBody');
-  tbody.innerHTML = '';
-  BEATS.forEach(def => {
-    const b = beats[def.id] || {};
-    const tr = document.createElement('tr');
-    tr.dataset.beat = def.id;
-    tr.innerHTML = `
-      <td class="beat-cell">
-        <span class="beat-lbl">${def.label}</span>
-        <input class="beat-time" type="text" value="${esc(b.time||'')}" placeholder="0:00~0:00" maxlength="12" data-bid="${def.id}" data-f="time">
-      </td>
-      <td class="role-cell"><div class="role-txt">${def.role}</div></td>
-      <td><div contenteditable="true" data-placeholder="今回の変数を記述..." data-bid="${def.id}" data-f="variable">${b.variable||''}</div></td>
-      <td class="cb-cell"><div contenteditable="true" data-placeholder="候補カット 1&#10;候補カット 2&#10;候補カット 3..." data-bid="${def.id}" data-f="cutBank" style="min-height:60px;white-space:pre-wrap;">${b.cutBank||''}</div></td>
-      <td class="sel-cell"><div contenteditable="true" data-placeholder="実際に使うカット..." data-bid="${def.id}" data-f="selectedCut">${b.selectedCut||''}</div></td>
-      <td><div contenteditable="true" data-placeholder="音響設計..." data-bid="${def.id}" data-f="audio">${b.audio||''}</div></td>
-      <td><div contenteditable="true" data-placeholder="テロップ一言..." data-bid="${def.id}" data-f="telop">${b.telop||''}</div></td>
-      <td class="ng-cell"><div contenteditable="true" data-placeholder="避けること..." data-bid="${def.id}" data-f="ng">${b.ng||''}</div></td>
-    `;
-    tbody.appendChild(tr);
-  });
-}
-
-/* ── Selected Cuts ── */
-function addCut(data={}) {
-  const {time='', beat='hook', cut='', purpose=''} = data;
-  const tbody = document.getElementById('cutBody');
-  const no = tbody.querySelectorAll('tr').length + 1;
-  const tr = document.createElement('tr');
-  const opts = BEATS.map(b => `<option value="${b.id}"${b.id===beat?' selected':''}>${b.label}</option>`).join('');
-  tr.innerHTML = `
-    <td class="cut-no">${no}</td>
-    <td><input class="cut-time-in" type="text" value="${esc(time)}" placeholder="0〜0"></td>
-    <td><select class="cut-beat-sel">${opts}</select></td>
-    <td><div contenteditable="true" data-placeholder="カットの内容..." style="min-height:22px;">${cut}</div></td>
-    <td><div contenteditable="true" data-placeholder="このカットの目的..." style="min-height:22px;">${purpose}</div></td>
-    <td><button class="cut-del" onclick="removeCut(this)">✕</button></td>
-  `;
-  tbody.appendChild(tr);
-}
-
-function removeCut(btn) {
-  if (document.querySelectorAll('#cutBody tr').length <= 1) return;
-  btn.closest('tr').remove();
-  document.querySelectorAll('#cutBody tr').forEach((tr,i) => {
-    tr.querySelector('.cut-no').textContent = i+1;
-  });
-}
-
-/* ── Collect & Save ── */
-function collectEditor() {
-  const variable = {};
-  VAR_KEYS.forEach(k => {
-    variable[k] = document.getElementById('v_'+k)?.innerHTML || '';
-  });
-
-  const beats = {};
-  BEATS.forEach(def => {
-    const tr = document.querySelector(`tr[data-beat="${def.id}"]`);
-    if (!tr) return;
-    beats[def.id] = {
-      time:        tr.querySelector(`input[data-f="time"]`)?.value || '',
-      variable:    tr.querySelector(`[data-f="variable"]`)?.innerHTML || '',
-      cutBank:     tr.querySelector(`[data-f="cutBank"]`)?.innerHTML || '',
-      selectedCut: tr.querySelector(`[data-f="selectedCut"]`)?.innerHTML || '',
-      audio:       tr.querySelector(`[data-f="audio"]`)?.innerHTML || '',
-      telop:       tr.querySelector(`[data-f="telop"]`)?.innerHTML || '',
-      ng:          tr.querySelector(`[data-f="ng"]`)?.innerHTML || '',
-    };
-  });
-
-  const selectedCuts = [];
-  document.querySelectorAll('#cutBody tr').forEach(tr => {
-    const ces = tr.querySelectorAll('[contenteditable]');
-    selectedCuts.push({
-      time:    tr.querySelector('.cut-time-in')?.value || '',
-      beat:    tr.querySelector('.cut-beat-sel')?.value || 'hook',
-      cut:     ces[0]?.innerHTML || '',
-      purpose: ces[1]?.innerHTML || '',
-    });
-  });
-
-  return {
-    episode: document.getElementById('epNameIn').value,
-    variable, beats, selectedCuts,
-    updatedAt: Date.now()
-  };
-}
-
-async function saveEp() {
-  setSS('SAVING...', 'busy');
-  EPS[CUR] = collectEditor();
-  try {
-    await gPatch({ episodes: EPS });
-    setSS('✓ SAVED', 'ok');
-    toast('↑ Gistに保存した');
-  } catch(e) {
-    setSS('FAILED', 'err');
-    toast('保存失敗：'+e.message, false);
+/* ═══ EVENT DELEGATION ═══ */
+document.addEventListener('input',e=>{
+  const el=e.target;
+  // Beat fields
+  if(el.dataset.beat&&el.dataset.field){
+    const val=el.contentEditable==='true'?el.innerHTML:el.value;
+    if(ep&&ep.beats[el.dataset.beat])ep.beats[el.dataset.beat][el.dataset.field]=val;
+    return;
   }
-}
-
-document.addEventListener('keydown', e => {
-  if ((e.metaKey||e.ctrlKey) && e.key==='s') {
-    e.preventDefault();
-    if (document.getElementById('editorView').classList.contains('active')) saveEp();
+  // Variable fields
+  if(el.dataset.var){
+    const val=el.contentEditable==='true'?el.innerHTML:el.value;
+    if(ep)ep.variable[el.dataset.var]=val;
+    return;
+  }
+  // Cut fields - sync desktop <-> mobile
+  if(el.dataset.cid&&el.dataset.field){
+    const val=el.contentEditable==='true'?el.innerHTML:el.value;
+    document.querySelectorAll(`[data-cid="${el.dataset.cid}"][data-field="${el.dataset.field}"]`).forEach(o=>{
+      if(o!==el){
+        if(o.contentEditable==='true')o.innerHTML=val;
+        else o.value=val;
+      }
+    });
   }
 });
 
-/* ══════ INIT ══════ */
-async function init() {
-  PAT = localStorage.getItem(K_PAT) || '';
-  GID = localStorage.getItem(K_GID) || '';
-  if (PAT && GID) {
-    await loadDash();
-  } else {
-    document.getElementById('loader').classList.add('hidden');
-    view('setupView');
+/* ═══ SAVE ═══ */
+function collectCuts(){
+  return Array.from(document.querySelectorAll('#cutBody tr')).map(tr=>{
+    const id=tr.dataset.cid;
+    const g=f=>document.querySelector(`tr[data-cid="${id}"] [data-field="${f}"]`);
+    return{
+      beat:    g('beat')?.value||'hook',
+      time:    g('time')?.value||'',
+      cut:     g('cut')?.innerHTML||'',
+      purpose: g('purpose')?.innerHTML||'',
+      howToShoot:g('howToShoot')?.innerHTML||'',
+      audio:   g('audio')?.innerHTML||'',
+      telop:   g('telop')?.innerHTML||'',
+      materialStatus:tr.querySelector('.mat-sel')?.value||'notShot',
+      memo:    g('memo')?.innerHTML||'',
+    };
+  });
+}
+
+async function saveEp(){
+  if(!ep)return;
+  ep.selectedCuts=collectCuts();
+  ep.updatedAt=Date.now();
+  EPS[CUR]=ep;
+  setSS('SAVING...','busy');
+  try{
+    await gPatch({episodes:EPS});
+    setSS('✓ SAVED','ok');
+    toast('↑ Gistに保存した');
+  }catch(e){setSS('FAILED','err');toast('保存失敗：'+e.message,false);}
+}
+
+document.addEventListener('keydown',e=>{
+  if((e.metaKey||e.ctrlKey)&&e.key==='s'){
+    e.preventDefault();
+    if(document.getElementById('editorView').classList.contains('active'))saveEp();
   }
+});
+
+/* ═══ INIT ═══ */
+async function init(){
+  PAT=localStorage.getItem(KP)||'';
+  GID=localStorage.getItem(KG)||'';
+  if(PAT&&GID){await loadDash();}
+  else{document.getElementById('loader').classList.add('hidden');showView('setupView');}
 }
 init();
 </script>
